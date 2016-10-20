@@ -1,0 +1,256 @@
+java und xml d
+
+der xml parser kümmert sich beim einlesen im normalfall um die überorüfung der wohlgeformtheit des doks. ist diese verletzt schlägt der parse vorgang fehl.
+
+zu xml dokumenten können grammatiken existieren: ddtds, xml schemas. In solchen Grammatiken sind keine syntaktischen, dafür aber inhaltliche Regeln definiert, die sich nicht darum kümmern, mit welcher schreibweise elemente, attribute, kommentare usw auszuzeichnen sind. Stattdessen wird der logische inhalt spezifiziert, also beispielswiese welche elemente und attribute in einem dok vorkommen dürfen, welche namensräume diese haben müssen und wie sie geschachtelt werden können.entspricht ein konretes xml dok den regeln aus der gramatik so nennt man es valide. 
+
+valide: wohlgeformt, inhalt entsprichtt grammatik.
+was ist validierung und wofür evtl auch hier 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+DTD
+
+\textbf{entytie referenz}
+
+Java und xml d
+
+grammatik eines xml dok kann bis zu einem bestimmten grad vorgegeben werden. Das heißt es kann explizit vorgeschrieben werden, wie ein xml dok struktureiert sein muss und welche inhalte es besitzen darf. Dies ist beispielsweise dann äuérst wichtig, wenn eine Anwendung ein xml dok mit einer bestimmten struktur erwartet. Um zum einen nun außerhalb dieser anwendung zu dokumentiere, wie das xml dok struktueriter sein muss und andererseits der anwendung selbst eine einfache möglichkeit zur überprüfung des  eingelesenen xml dok zu geben wird die erwartete struktur fest mit hilfe eines definitionsdokuments vorgegeben: 
+dtd ist am ältesten und am weitesten verbreitet. Nutzt eigene syntax die zwar an xml angelehnt aber noch nicht identisch ist. Damit ein xml dokument gegen eine grammatik überpr+ft wrefden kann, ist es erforderlich dass der verwendete xml parser die validierung anhand einer dtd bzw eines xml schemas unterstützt –> validierender parser
+
+neben der definition der struktur eines xml doks hat eine dtd zusätzlich eine weiter wichtige funktion, nämlich entities zu definieren--> sinnvoll, emmm eie ersetzung an einer bestimmten stelle im xml dok erfolgen soll
+
+interne und externe entities
+
+deklaration der dt d in einer seperaten datei abspeichern und diese datei aus dem xml dok heraus zu referenzieren dtd referenzieren dtd direkt einbetten
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+java und xml e
+
+dtds are a set of rules that define how xml data should be structured. Being able to define suhc rules will become more inportant as we exchange, process and display xml in a wider environwent.
+
+Well formed xml data is guaranteed to use proper xml syntax , and a properly nested /hieraarchical ) tree structure.
+
+Parser itself can verify that the document conforms to the rules of a specufic xml vocubalayr. This validation is accomplished by comparing the content of the dok with an associate template in the form of DTD.
+ 
+Valid xml data is well formed data that also complies with syntax, structual, and other rules as defined in a dtd
+
+dtds use a formal ggrammar o describe the structure and syntax of an xml dok including the permissible values for much of that dok conted. These rules, called validity constraints, ensure that any xml data conforms to its associated dtd.
+
+A dtd is a set of declatations which can be incorporated within xml data, or exist as a seperate dok. The dtd defines the rules that describe the structure and permissible content of the mxl data. Only one dtd may be associated with a given xml structure.
+
+The most significant aspet of dtd validation is the definition of the structure of the hierarchical tree of elements. A validating parser and a dtd can ensure that all necessary elements and attributes are present in a dok, and that there are no unauthorized elements or attributes. This ensures that the data has a valid structure before it is handed over to the application.
+
+A dtd can be used in conjunction with a validating parser to validate existing xml data or envorcee validity during the vreation of xml doks by ahuman author Sharing dtds are the basis for many xml vocabularys. --> more reliable data exchange.
+
+Alternativen: xml schema cml-data, xml-data-reduced
+
+although only one dtd can be associated wiht a given xml dok, that dtd may be divided into two parts: internal und external subset
+
+the internal subset is that portion of the dtd inicluded within the xml data (priority)
+
+the external subset is the set of declarations that are located in a seperate documents without dtd we can‘t validate the xml data (we can at least ensure that it‘s wellformed).
+
+Dtds (doc type definition) are linked to xml data objects using markup called dokument type declaration
+
+validating oarsers use this declaration to retrieve the dtd (if it exists) and validate the document according to the dtds rules. If the dtd is not found, the parser will send an error message, and be unable to validate the document.
+
+Most dtds ue the external subset, since this allows sharing the dtd with multiple doks, and seperates the xml data and its desscriptions. Using only internal subset would require copies of the dtd declarations in all documet instances. External subsets update is so auch einfacher.
+
+Internal subsets can be used to override an external dtd, its the only way that an existing dtd that doesnt match our needs exactly can be used.
+
+Dtd dexlarations that describe the most xml doks:
+
+Elements
+
+Content models (element declaration to describe the structure and content of a gien
+
+element type
+
+Sequenve and choice lists
+
+Attributs
+
+Entities
+
+Notations -Non xml data
+
+cml is based upon text data, but not all data is textual. We need some way to include references to external data, such as images, spreadsheet files, and other binary data formats. Thus, we describe the non xml data in the dtd and include a reference to an external applivation that will handle the data (since an xml parser cant do this). The xml applivcation will then have this info available either for its own use or to pass on to a helper application.
+
+A notation is used by the xml application as a hint about handling an unparsed entity or some other non xml data. 
+
+Notations can be used to identify:
+
+the format of unparsed entities
+
+the format of element attributes of the entity and entity types
+
+the application associated with a processing instructions
+
+Entities
+
+Replaceable content is a key maintenance . References in our xml data. Reference to pre defined character entity sets. The document entity serves as the entry point for an xml parser, and contains the entire dok. Internal and external subsets are also entities.
+
+Two main categories of entities:
+
+general entities: used within xml data (can be parsed or unparsed)
+
+parameter entities: only used in dtds
+
+
+
+parsed entities: can include any well-formed content, known  as the replacement text which may include other markup
+
+unparsed entities: non xml data
+
+internal: the actual replacement is included in the declarations
+
+external: the replacement text is lovated in an external file or
+
+other ressource (public, system, or both)
+
+no inheritance
+
+when the xml parser encounters the external reference, it will refer back to the earlier declaration, read the named file (at the system location), process the declaration therein, and then pass its replacement text to the application, just as if the entity were declared in the dok as before.
+
+Every validating parser must include 2 different parsere, one for xml and one for the dtd.
+
+This parsers keep the dtd information hidden from the application and user.
+
+If amespaces are used, every element type from each namespace must be included in the dtd.
+
+Dtd really work with only one data type-- the text string. There is no provision for nummeric data types, or much less for more complex structures like dates, times, encoded numbers or strings, or uri reference.
+
+The difference between well formed and valid xml data-modelthah dtds comprise an internal and an external subset how to describe elements, attributes and their content.
+
+How to define the various kids of entities, for both xml data and dtd.
+
+How to handle non xml data-modelhow to use conditional sections in dtds the limitations of dtds.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+wikipedia
+
+Schemasprachen, um Dokumenttypdefinitionen auszudrücken;
+
+MitDocument Schema Definition Languages existiert eine eigene Spezifikation zur Definition von Dokumentstrukturen, Datentypen und Datenbeziehungen in strukturierten Informationsquellen.
+
+Innerhalb einer DTD kann die Dokumentstruktur mit Deklarationen von Elementtypen, Attributlisten, Entities und Notationen und Textblöcken definiert werden. Dabei können spezielle Parameter-Entities benutzt werden, die DTD-Teile enthalten und nur innerhalb der DTD erlaubt sind.
+
+Notationen sind Hinweise zur Interpretation von externen Daten, die nicht direkt vom XML-Parser verarbeitet werden. Notationen können sich beispielsweise auf ein Dateiformat für Bilder beziehen.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+w3 school
+
+An XML document validated against a DTD is both "Well Formed" and "Valid".  The markup declarations can be given either locally, in the root entity of the document in the document type declaration , or externally in a separate fi le, as a separate entity. In the latter case, the address of the fi le must be provided by the document type declaration.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+XML: DTD, XML-Schema, XPath, XQuery, XSLT, XSL-FO, SAX, DOM 15.oktober 13:51
+
+Wohlgeformtheit sicher nur die syntaktische Korrrektheit eines xml doks. In vielen Bereichen ist es zudem sehr wichtig sicherzustellen, dass ein Dok auch einer vorab festgelegten Struktur entspricht. Die älteste Möglichkeit, eine Strukturdefinition für eine Klasse von Doks zu definieren, ist die form einer dtd.
+
+In einer dtd wird festgelegt, welche elemente erlaubt sind, wie diese verschachtelt sind und welche Attribute ein Element haben darf oder muss. Ein xml dok ist gültig wenn seine struktur der zugehörigen dtd entspricht. Ein gültiges dok ist immer wohlgeformt.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+XML-Schema
+
+\textbf{xinclusion}
+
+Java und xml d
+
+dtd ist eine relatiiv unkomplizierte möglichkeit, ein xml dok bis zu einem bestimmten grad zu beschränken und sommit für viele anwendungen bestimmt eine gute wahl.
+
+Nachteil dtd: dtd liegt nicht in einem xml format vor, weswegen bereits für die bearbeitung häufig verschiedene Werkzeuge verwendet werden müssen.
+
+Wenig granulare definitionsmöglichkeit von dtd. Für viele moderne anwengdungen reicht die definition von element – verscchachtelung und attribut-angaben häufig nicht weiter, indem beispielsweise eigene elementtypen definiert und vererbt werden können und sich wesentlich mehr einschränkungen für die werte von Attribut und Elementinhalten festlegen lassen.
+
+Xml schema kann wie dtd dok beschränken --> in form von einem weiteren xml dok. Die beschränkung selbst ann auf einem wesentlich feineren Level erfolgen. Allerdings steigt auch der kompläxitätsgrad an.
+
+Ein xml schema ist im bezug auf die beschränkung eines xml doks zwar wesenlich mächtiger als eine dtd, allerdings ist für manche einsatzzwecke trotz allem parallell zu xml schema auch eine dtd notwendig --> dtd kann entity referenzen definieren, xml schema nicht.
+
+Ausgangspunkt einer sml schema grammatik sind typen (einfache und komplexe) 
+
+einfache typen: alles was sich in xml durch reinen text ohne tags ausdrücken lässt und damit in attributen oder als textknoten in elementen unterscheidungen möglich. (int, boolean, decimal, time Wertelisten, unions).
+
+Um einen eigenen einfachen typ zu dfinieren , muss ein element in die schemadatei eingafügt werden.
+
+Komplexe typen diehneen dazu inhalte zu definieren, die auch anderes als reinen text enthalten können, beispielsweise kindelemente oder attribute. Nur elementen kann ein omplexer typ zugewiesen werden, während einfachhe typen sowohl elemente als auch attributen zugewiesen werden.
+
+Xml schema unterscheidet bei komplexen typen zwischen einfachem und komplexem inhalt.
+
+Einfaccher: element darf nur text und attribute und keine kindelemente enthalten
+
+Komplexer: Kindelemente erlaubt, textinhalt erlaubt- kann aber keinen regeln unterworfen werden
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+wikipedia
+
+Struktur in Form eines XML-Dokuments beschrieben
+
+große Anzahl von Datentypen unterstützt.
+
+Im Gegensatz zu DTDskann bei Verwendung von XML Schemata zwischen dem Namen des XML- Typs und dem in der Instanz verwendeten Namen des XML-Tags unterschieden werden.
+
+Vergleichbar den Primärschlüsseln in relationalen Datenbanken lassen sich mittels XML Schema eindeutige Schlüssel definieren. XML Schema unterscheidet zwischen der Eindeutigkeit (engl. unique) und der Schlüsseleigenschaft.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+w3 school
+
+XML-based alternative to DTD
+
+XML Schemas are written in XML
+
+• XML Schemas are extensible to additions
+
+• XML Schemas support data types
+
+• XML Schemas support namespaces
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+https://www.w3.org/TR/xmlschema11-1/
+
+The schema language, which is itself represented in an XML vocabulary and uses namespaces, substantially reconstructs and considerably extends the capabilities found in XML document type definitions (DTDs). The purpose of an XSD schema is to define and describe a class of XML documents by using schema components to constrain and document the meaning, usage and relationships of their constituent parts In general, a valid document is a document whose contents obey the constraints expressed in a particular schema
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+java und xml e
+
+It is a powerful and flexible language, which permits authors to create either tighter or looser restrictions over doks than dtd, while still allowing them to be validated. Schemas describe the structure of doks and constrain what they can contain.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+http://www.aspheute.com/artikel/20010514.htm 15.oktober 10:44
+
+Die DTD Spezifikationen wurden vom W3C Konsortium vorgeschlagen, während die XML Schemas auf einen Vorschlag von Microsoft basieren aber jetzt vom W3C Konsortium vereinheitlicht und standardisiert wurden.
+
+Diese Informationen benötigen andere Applikationen (z.B. Web Services), damit diese erkennen, in welcher Form bzw. Datenstruktur sie die Daten erhalten, wie sie die erhaltenen Daten bearbeiten müssen und in welcher Form sie sie zurück zu Ihnen senden müssen, damit Sie wiederum mit den bearbeiteten Ergebnissen etwas anfangen können.
+
+Weiters können Sie Elementen einen Datentyp zuweisen - z.B Integer, Datumswert, Fließkommazahlen, Zeichenketten sowie die anderen (simplen) Datentypen oder auch URLs. Bei der Verwendung von DTD's sind Sie bei der Datentypzuweisung auf den Datentyp String limitiert.
+
+XML Schemas ist die einfache Erweiterbarkeit dieser, da sie XML basiert sind und daher nicht an einen vorgegebenen Syntax gebunden sind
+
+referenziert eine XML Datei dieses Schema, und die XML Datei entspricht dem Schema nicht, dann wird der Parser die XML Datei als nicht korrekt monieren.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+http://www.uni-weimar.de/medien/webis/teaching/lecturenotes/web-technology/unit-de-
+doclang-xml-schema.pdf 15.oktober 10:52
+
+Das Typsystem von XML-Schema ermöglicht: 
+Definition von Constraints für zugelassenen Inhalt 
+Überprüfung der Korrektheit von Daten 
+Verarbeitung von Daten aus Datenbanken 
+Spezialisierung von Datentypen 
+Definition komplexer Datentypen 
+Konvertierung zwischen Daten verschiedenen Typs
+
+Zwei Arten von Namensräumen, die deklariert werden können [W3C] : 1.
+
+Einen oder mehrere Namensräume, zu denen die im Schema verwendeten Elemente und Datentypen (= das XSD-Vokabular) gehören. 2. Einen Zielnamensraum (Target Namespace) für die global deklarierten Elemente und Attribute des Schemas (= das Autorenvokabular). Dieser muss bei schemakonformen Instanzdokumenten beachtet werden.
+
+Ein XML-Dokument heißt gültig hinsichtlich eines Schemas (schema valid), wenn es über ein Schema verfügt, und konform zu diesem aufgebaut ist. Das zu validierende Dokument wird als Instanzdokument bezeichnet. Dadurch wird es möglich, alle erlaubten Schemata selbst durch ein Schema – ein sogenanntes Metaschema – zu beschreiben und zu validieren
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Andere
