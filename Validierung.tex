@@ -1,3 +1,31 @@
+\textbf{entytie referenz}
+
+Bei der Validierung wird eine Wohlgeformtheit des XML-Dokuments vorausgesetzt. Das XML-Dokument wird gegen eine Grammatik geprüft, welche nicht die syntaktischen, sondern die inhaltlichen Regeln eines XML-Dokuments spezifiziert. Es wird vorgegeben, welche Elemente und Attribute vorkommen dürfen, welche Namensräume diese haben dürfen, wie sie verschachtelt werden können und welches mögliche Inhalte von Attributwerten und Textknoten sind. Entspricht der Inhalt eines XML – Dokuments dieser Grammatik, so ist es valide. Ein XML-Parser überprüft immer die Wohlgeformtheit, ein validierender XML-Parser überprüft zusätzlich die Validität eines XML-Dokuments. A
+Die Syntax eines XML-Dokuments kann durch eine Grammatik bis zu einem bestimmten Grad vorgegeben werden. Dies ist besonders wichtig, da wir XML in einer großen Umgebung austauschen, verarbeiten und anzeigen. B Wenn eine Anwendung ein XML-Dokument mit einer bestimmten Struktur erwartet, wird diese mithilfe eines Definitionsdokument vorgegeben, womit das XML-Dokument dann überprüft werden kann.
+Sprachen mit denen solch eine Grammatik, mithilfe eines Definitionsdokuments, definiert werden kann sind zum Beispiel DTD (Document type definition) oder XML-Schema.
+
+\subsubsection*{DTD}
+DTD ist am ältesten und am weitesten verbreitet.  Sie nutzt eine an XML angelehnte Syntax, mit derer Hilfe sie die Struktur eines XML-Dokuments aber auch benutzerdefinierte Entities definieren kann. Entities nehmen Ersetzungen an bestimmten Stellen eines XML-Dokuments vor, man kann zwischen  allgemeinen und Parameter Entities und internen und externen Entities unterscheiden. A
+Allgemeine Entities werden innerhalb des XML-Dokuments, und Parameter Entities nur innerhalb des DTDs verwendet. B
+ Eine interne Entity wird innerhalb eines DTD-Dokuments gebildet, indem ein Name mit zugehörigem Wert, der eine Entity-Referenz darstellt, definiert wird. Innerhalb des XML-Dokuments aufgerufen, wird diese Referenz mithilfe von &Name. 
+<!ENTITY Name „Wert“>
+Eine externe Referenz  inkludiert ein Fragment eines XML-Dokuments an einer Stelle in einem anderen XML-Dokument.  Es wird ein Name mit zugehöriger URI, also dem Pfad zur Datei oder Ressource definiert. 
+<!ENTITY Name SYSTEM „URI“> A
+Die Struktur eines XML-Dokuments wird mithilfe von Regeln festgelegt, diese versichern, dass das XML-Dokument dem damit verbundenen DTD entspricht. Es können Elementtypen, Attributlisten, Textblöcke und Entities definiert werden. Auch Notationen können festgelegt werden, sie verweisen auf externe Daten wie zum Beispiel Bilder, die nicht von einem XML-Parser verarbeitet werden können.  Ein validierender Parser kann zusammen mit einem DTD versichern, dass alle benötigten Elemente und Attribute in einem Dokument vorkommen und dass keine nicht autorisierten Elemente oder Attribute vorkommen. DTDs arbeiten eigentlich nur mit einem Datentyp, dem Textstring, für andere Datentypen gibt es wenig bis gar keine Unterstützung, so muss auch bei einer Verwendung von Namensräumen darauf geachtet werden, jeden Namensraum im DTD einzubeziehen. 
+Das DTD kann in ein internal und ein external Subset aufgeteilt werden. Das external Subset enthält die Deklarationen, die in einem separaten Dokument gespeichert werden. Es ist einfach auszutauschen und upzudaten. Das internal Subset ist der Teil des DTD, der innerhalb der XML-Daten definiert wird. Es hat Priorität vor dem external Subset und wird benutzt um ein external Subset zu überschreiben, sodass zum Beispiel ein existierendes DTD verwendet werden kann, auch wenn es nicht vollkommen den Bedürfnissen entspricht. B
+Jeder validierende Parser der mit einem DTD validiert, muss aus zwei verschiedenen Parser bestehen, einem für das XML-Dokument und einem für das DTD. A
+\subsubsection*{XML-Schema}
+Wie ein DTD kann auch ein XML-Schema die Struktur eines XML-Dokuments vorgeben. Dabei liegt die Syntax von einem XML-Schema in XML vor, also wird kein weiteres Werkzeug zur Bearbeitung wie bei einem DTD benötigt wird. Ein XML-Schema kann wesentlich genauer beschränken als ein DTD, es können eigene Elementtypen definiert und vererbt werden und es können mehr Einschränkungen für die Werte von Attributen und Elementinhalten vorgegeben werden. Auch Namensräume werden unterstützt und viele Datentypen können spezialisiert und definiert werden. Es können aber keine Entity-Referenzen definieren werden, werden diese benötigt kann zusätzlich ein DTD verwendet werden, oder sie können mit XInclude eingebunden werden. 
+Ein XML-Schema ist aus einfachen und komplexen Typen aufgebaut. Einfache Typen beschreiben alles was sich in XML durch reinen Text ohne Tags ausdrücken lässt. Komplexe Typen können neben reinem Text auch andere Inhalte, wie zum Beispiel Kindelemente oder Attribute beinhalten. Sie können in komplexe Typen mit einfachen Inhalt, also Text oder Attribute, oder komplexe Typen mit komplexem Inhalt, also Text, Attributen oder Kindelementen, unterteilt werden. 
+A
+
+
+java und xml d A
+java und xml e B
+http://www.uni-weimar.de/medien/webis/teaching/lecturenotes/web-technology/unit-de-
+doclang-xml-schema.pdf 15.oktober 10:52 C
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 java und xml d
 
 der xml parser kümmert sich beim einlesen im normalfall um die überorüfung der wohlgeformtheit des doks. ist diese verletzt schlägt der parse vorgang fehl.
