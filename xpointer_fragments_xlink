@@ -1,0 +1,75 @@
+
+NAvigate informations in a atructured manner. We need a way of specifying relationships between parts of doks, and a way of accessing the portions or resources within the dok that have relationships to other resources. These resources can be portions of the same dok, of different doks, or even items, that are not xml at all. 
+Xml fragment interchange ... transmission of partial xml doks. It provides a way to specify contextual info for a fragment of a dok without transmitting the entire dok. 
+Xlkink ... mechanism for linking to other resources from within an xml dok. Roughly analogous to a hyperlink but much more flexible, xlink allows also non xml doks to be linked together.
+
+Xpath ... general language specification for addressing parts of an xml dok.
+Xpointer ... mechanism for pointing to a particular location in, or portion of, an xml dok. Relies on xpath. Xpath is used to define the addressing mechanism, while xpointer provides a standard way to use that mechanism in recerences. Xpointer may be used to point to xml doks from non xml sources, such as html.
+
+Xml fragment interchange
+It would be niceif we could just work with a small portion of the dok instead of needing to transfer and load the full version of it every time. To address this need, the w3c has vreated a specification for xml fragment interchanges, that defines some mechanisms for creation and transfer of a portion of an xml dok.
+A dok fragment is defined by thes specification to be any well-balanced subset of tbe original dok. Well-balanced subsets of doks contain whole info items , but they do not necessarily need to be well formed in the sense that an xml dok is well-formed. Specifically, wellbalanced subsets must complete tags. A well-ballanced subset may habe text at the top level- indeed a well-ballamced subset may consist of only text- or if may have multiple elements at the top level. 
+It is up to the application that serves the  fragments to decide  which piece of information are useful to the receiver. 
+A valid fragment will appear as a contiguous lock of text in the original dok, wile non-contiguous thext may never be a valid cragment.
+Fragments might be useful to us in application development: conserve resource vonsumption
+Isolate relevant subsets of info from a source dok
+Create a concurrent dediting environment for large xml doks.
+
+The most obvious way fragments vould e useful to us is to reduce the amount of info that is transferred avross ur networks and processed by our system 
+This will result in less bandwidth being onsumed by the transmission, wuicker parsing on the receiving end, and direct alless to the desired info without habing to traverse unnecessary info as well.
+We should use fragments where possible because they allow us also to provide context info for the fragments
+Xfi provided a mechanism for the transmission of vontext info along with the fragment to the receiver.  Context info is info that is sent to a reveiver to help describe the fragments structural positionwithin the original dok. The author of the xml server van design the fragment generator to include whatever portion of the info is relevant to the receiver for the purposes of interpreting the fragmen. 
+The idea is to make the fragment as süarse as possible , just passing enough info that the dok can be validated.
+The xml fragment interchange provides a way to describe a portion of an xml dok to a receiver along with enough context info to make the dok usable by the receifer. 
+
+Linking
+Extends the functionality of xml by including links to external resources such as other xml doks, html doks, or images. As we may see, we may use liks to define relationships between similar doks, to define a sewuence in which doks should be navigated or even to emded non xml content in an xml dok.
+Hyperlink but with greater functionality and flexibility.
+
+Xlink
+To assert a link from an xml dok, this namespace must be defined for the subtree in which the link is asserted. <links are asserted by adding attributes of the xlink namespace to an element in the dok. If youre using a dtd , woull nedd todefine the attributes in an attlist for the linking element, otherwise your validation provessor will vomplain that it doesn’t recognise the xlink attributes.
+Link types: simple links offer similar functionality to html hyperlinks. They link two locations in one direction. 
+Extended links offer greater vapabilities. They allow wore than one resource to be linked together.  There are three types f extended link – inbound outbound and third party
+An extended link has participants (locators and resources) and ARCS. Resources are by-value loval resources while lovators use of uris meke them by.reference whether in the same sesource or a referenve to another dok.
+Xlink extended links are defined the same way simple links are, by adding attributes in the xlink namespace to existing xml doks.
+Lovator elements should alwaxxs appear as sun elements of an element that is an xlink extended link. They are used to spevify the locations that participate in an externded link. The xlink href attribute defines the uri hat locates a remote endpoint for the extended link being defined. Thisattribute is required for all lovator elements. Note that if the provessor van understand xpointer references the uri may vontain an xpointer reference to a subset of an xml dok. Be aware when designing doks vontaining xlins that, whatecer functunality you use, all processors that will be consuming these doks must understand the functionality. 
+A locator does not expricitly indicate a link, it only specifies a location that participating in the estended link. To define explicit conenections between locators, we need to use the arc element. 
+Resource elements appear as sub elements of an extended link, and are used to define participants in the link that are within the svope of the extended link elemnt itselt. .
+Arc elements also appear as sub elements of an extended link, and are used to define nacigable connections between locators partivipanting an extended link.
+A special tykpe of arc element s used to indicate to an xlink aware processor that out of line links exist for a particular dok , linkbases. Using linkbases, we van maintain a list of links between doks.if you want, you van always use xslt ot style xlink assertions into some sort of equivalent devlarations for your target pratform such as html hyperlinks.
+Xlink provides a flexible mechanism for fedefining links in xml doks that vonnect various resourves together. These resources may ecen be resourves that don’t normaly hage the ability to vontain links, like image files. 
+Link one dok to another much as html hyperlinks work
+Link many different resources together
+Abstract link info away from content alloweing linkage info to be easily updated. 
+
+XPointer
+
+Mechanism to allow us to not point an entire xml dok, but to some portion of it, individual sub trees, attributes or even individual characters that are part of text content.
+Xpointer specification essentially extend another specification, xpath. Xpointer provides syntax for static address info in a link to an xml dok, as well as extending xpath with a few additional features. 
+Xpointer are referenced in a similar way to html pointers. When working with an xpointer aware processor, uris may contain a reference to a position in an xml dok by appending an xpointer fragment identifier to the uri of the dok itself. 
+Three ways of specifying fragment identifiers in xpointer;
+Bare names
+To provide a similar functionality to that we are used to in html pointers, a shorthand notation is provided for pointing to elements with specific Ids.  If the fragment is simply an id value, the poiter points to the element with that id value. For this shorthand to work, the dok being pointed into  must have a schema or dtd that specifies an attribute for the element with the type ID.
+Child sequence
+Child sequence fragment identifiers allow a dok to be pointed into by walking through the child element tree. 
+Full xpointers
+Is quite complex and allows a great deal of flexibility in pointing into an xml dok. It builds on xpath. The xpointer specification, the pointing mechanism being used in the uri must be identified by putting the pointing mechanism name and parentheses around the locator. The full xpath specification uses xpath for its location mechanism. Xpath provides a universal way of specifying some portion of an xml dok. 
+Xpointer extensions to xpath
+Xpointer extends xpath fo allow for some additional functionality. It introduces the concepts of points and ranges as ways to devlare portions of xml doks, and provides some functions for manipulating these new position references. 
+Points: xpointer defines the concept of a point location, as distinct from a node. 
+Ranges: xpointer defines the concept of a range location, which is defined to be xml structure and contend between two points. 
+Additional functions: allow for the generation and manipulation of point and range locations. 
+
+Xpointer errors
+There are three errors that may be caused that may be caused by an improper xpointer. Any parser that is xpointer aware will need to handle these errors in some way (the xpointer specification leaves the exact mechanism up to the developer designing the xpointer aware processor’)
+Syntax error
+A fragment identifier that does not correspond to the syntactical constraints of the xpointer specification.
+Resource error
+A fragment identifier that is syntactically correct, but is attached to an improper resources.
+Sub-resource error
+A fragment identifier that is syntactically correct and is attached to a well-formed xml document but does not result in any valid locations.
+
+Namespace Resolution
+It is possible for an xpointer expression to refer to a  namespace that is not declared in the dok containing the xpointer. In the previous drafts of xpointer, it was assumed that the prefix used for the namespace would be matched, and the appropriate element would be pointed to. If wou habe a complex namespace issue like this where there is the possibility of name clashes, wou should declare the uri for nhe namespace of each prefix you are matching on to ensure that the xpointer aware processor can find the appropriate target nodes in the target dok. ????????
+
+
