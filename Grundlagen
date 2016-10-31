@@ -1,0 +1,77 @@
+Grundlagen
+
+markup language /Beschreibungssprache
+kind von sgml
+Einsatzgebiete
+Namespaces um das zusammenzulegen und alles passt zusammen
+web soap ???
+generelle funktion von xml parsern und alles
+serialisierung und validierung
+Xml is standard, you can generate data documents that may be processed by anyone else who uses xml
+
+A
+Cml steht für  extensible markup  language. Dabei handeklt es sich um einen standard, der vom w5c bereits im jahre 2009 bescholssen wurde und als metasprache frü die auszeinung von textdokumenten dient. Xml defiiert also, welche bestandteile in einem solchen textdok erlaubt sind und wie diese einzelnen bestandteile eines solchen textdoks zusammengesetzt und grundsötzlich strukturiert sein möüssen.
+Ein Xml dokument ist ein textdokument, dass den xml Regeln entspricht. XML dok wird zu dok abgekürzt.
+Das xml dok
+Beliebiges textfragment, das den regeln von xml folgt und dementsprechend eine sammlung an bestimmten xml bestandteilen enthält. 
+Wichtigste bestandteile eines xml doks;
+Elemente
+Besteht aus einem Start und einem End tag. Innerhalb eines taxs wird der elementname definiert. Er muss ein gültiger xml name sein. 
+Zwischen den beiden tags können inhalte wie beispielsweise text oder andere elemente stehen.
+Attribute
+Innerhalb eines start tags können optional beliebig viele attribute in form von name wert paaren frü das element definiert werden. 
+Texte
+Beliebig langer freitext innerhalb eines elements. – ENTITY REFERENZEN FÜNF VORDEFINIERTE: feht auch eigene zu definieren uum beispielsm´weise auf zeichenkennen oder ganze xml doks zu verweisen.
+Kommentare
+Xml deklaration
+Die erste zeile eines xml doks. 
+Version: versionsnummer der verwendeten Xml spezifikation. 
+Encoding: kodierung des xml doks bestimmen. 
+Sttandalone: selten angegeben und legt festm ob auf eine externe dtd zugegriffen werden muss oder nicht.
+
+Processing instructions
+Konstrukt innerhalb con dok, verarbeitungsanweisung oder pi. Mit hilfe einer pi ist es möglich derjenigen anwendung, die das dok gerade verarbeitet, bestimmte info und anweisungen zu übergeben. Pi gehört nicht zum eigentlichen inhalt eines doks. Stattdessen sind sie als metadaten für die verarbeitenden anwendungen zu sehen.
+Entities---
+Alle diese bestandteile werden häufig als knoten bezeichnet. Manche beziehungen dieser knoten sind durch die xml spezifikation klar vorgegeben. 
+Parsen und serialisieren
+Diese beiden vorgänge stellen die schnitstellen zur außenwelt der anwendung dar und sind praktisch immer teil einer typischen xml applikation.
+Als parsen bezeichnet man das einlesen eines doks in den speicher der anwendung. Das einzulesende dok liegt dabei zeichenbasiert vor, ist also rein physikalisch gesehen nur eine menge von byes oder zeichen.
+Serialisieren nennt man den genau umgekehrten prozess: hier werden xml daten aus dem programm wieder in eine reichenbasierte ressource konvertiert und ausgegeben. 
+Die semantischen informationen eines xml doks, welchen xml knoten habe ich gerade vor mir, wie heißt das element oder attribut oder welchen textinhalt hat der textknoten oder der kommentar, sind beim parsen oder verarbeiten von xml doks wichtig. Die eingelesenen zeichen müssen also interpretiert und in einem xml spezifischen datenformat bereitgestellt werden. Unsere parse logik muss also wissen, welche zeichen in einem dok eine besondere bedeutung haben und was diese bedeutung ist. 
+Beim serialisieren muss auch eine konvertierung stattfinden. Aus den von uns übermittelten infos muss wieder ein gültiges dok geschaffen werden, mit allen dazu nötigen auszeichnungs inhalten. 
+XML-Bibliotheken
+Kernaufgabe einer jeden xml bibliothek, die uns das parsen und serialisieren von xml doks erlaubt:
+Kennt die xml syntax, also di sonderzeichen und weiß wie daraus die verschiedenen knotentypen abeleitet werden.
+Regeln der wohlgeformtheit sind hinterlegt
+Ein spezifisches datenformat für die repräsentation dieser info im programm wird beereitgestellt.
+
+Parsen und serialisieren heißen die beiden prozesse die zwischen diesen welten konvertieren. Die zugehörigen software module einer xml bibliothek nennt man dementsprechend parser und serializer.
+Xml parser wohlgeformtheit
+validierung
+B
+
+Markup language	
+Various forms of delimiters have been  used to define the boundaries of containers for content,special symbol glyphs, opresentation style of the text, or other special features of a dok. 
+Verschiedene Formen von Begrenzern wurden verwendet, um die Grenzen von Containern für Inhalt, spezielle Symbolglyphen, Darstellungsart des Textes oder andere spezielle Merkmale eines dok zu definieren.
+Markup is a method of conveying meta data (information about another dataset).
+
+Xml is based upon, a mature markup language called standard generalized markup language(SGML). Hypertext markup language is also a upon sgml, indeed it is an application of sgml. Html4 is called extensible hypertext markup language (XHTML), which is similary an application of xml. All of these meta langugages are for meta data, bug sgml and xml may be further considered meta-langugages, since they can be used to vreate other meta data languages. 
+Sgml based markup languages all use literal strings of characters, called tags to delimit the major components of the meta date, called elements.
+Xml allows us to vreate a structural model of the data within the text. Xml praxis is to separate the data structure from presentation. –> external stylesheet
+Goals of xml 
+Extensibility and separation of semantics and presentation
+Simplicity
+Internationalization
+Usable ofer the internet
+Interoperability with sgml
+
+Xml core and its key components and extensions are
+Xml 2.0 syntax, including dtds
+Namespaces in xml
+Sml schema 
+
+Xml vocab
+The most significant feature of xml is its extensibility. While every corporation could choose to define their own xml vocab, one of the strangths of xml is the sharing of vocabularies, all of which use the same basic syntax, parsers and other tools.
+An xml vocab is a description of xml data that is used as the medium for information exchange, often within a specific domain.
+There are two major programming models that can be use dto access xml data: DOM und SAX.
+
