@@ -1,6 +1,12 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 Xml parser
+
+Ein Parser ist ein Programm, das ein Dokument (das kann irgendeine Art von Datei sein) einmal "durchliest", und die enthaltenen Informationen darüberliegenden Schichten der Anwendung in irgendeiner Form zur Verfügung stellt.
+Nichts anderes macht ein XML-Parser. Er nimmt das XML-Dokument her, und stellt die enthaltenen Informationen (also Elemente, Attribute usw.) der Anwendung zur Verfügung. Will man also ein Programm schreiben, das XML-Daten verarbeiten kann, kommt man nicht umhin entweder selbst einen Parser zu schreiben, oder einen vorhandenen Parser zu benutzen.
+Von der zuerst genannten Möglichkeit möchte ich abraten, da das erstens recht aufwendig wird, und zweitens entsprechende XML-Parser frei verfügbar sind. Ihr könnt eure Energien also voll und ganz auf das Schreiben der Anwendung konzentrieren (warum mehr Arbeit machen als nötig?)
+http://www.uzi-web.de/parser/parser_was.htm
 A:
 
 Parsen
@@ -8,6 +14,8 @@ Validierende und nicht validierende
 Expliziete und implizite validierung
 zwei formen der validierung als teil des parse vorgangs zu einem späteren zeitpunkt nach dem parsen
 
+die wohlgeformtheit eines xml doks wird von der interpretierenden anwendung überwacht. Ein parser kane in dok einlesen und überpräfen. Er wird häufig von eirer übergeordneten anwendung verwendet um informationen aus einem xml dok zu extrahieren oder in anderer weise zu verarbeiten. 
+Danebe n kann ein parser auch die gültigkeit prüfen, indem er dessen aufbeu gegen eine vorgegebene grammatik überpröft. Die definition einer solchen grammatik erfolgt mit hilfe von dtd oder xml schema.
 Push und pull parsing
 Push parsing:
 Wie sie sehen konnten, ist das parsen mit sax auf sehr einfachen prinzipien aufgebaut:sie müssen nur eine content handler klasse schreiben und dann auf die inhalte des doks warten. Der parser wird sie ihnen schritt für schritt liefern.
