@@ -1,3 +1,42 @@
+xml überarbeitet
+
+Die Extensible Markup Language, kurz XML, ist eine Markup Sprache. Markup Sprachen werden verwendet um zu definieren welche Bestandteile in einem Textdokument erlaubt sind, wie sie zusammengesetzt und grundsätzlich struktueriert sein müssen. XML ist ein Standard der vom World Wide Web Consortium (W3C) beschlossen wurde. Sie basiert auf der Standard Generalized Markup Language (SGML). Bei SGML-basierten Markup Sprachen werden Tags verwendet, um die Metadaten also die einzelnen Elemente voneinander zu trennen. Die Markup Sprachen XML und SGML sind außerdem auch Metasprachen. Das heißt sie können verwendet werden um andere Sprachen und sogar andere Metasprachen zu definieren.A
+
+XML ist ein Standard, mit dessen Hilfe XML-Dokumente generiert werden können. Diese können von jedem verarbeitet werden der seinerseits XML Verwendet. Eine wichtige Eigenschaft von XML ist, dass es erweiterbar ist. Es können XML-Vocabulare, die die Beschreibung von XML-Daten enthalten, geteilt und ausgetauscht werden. Alle Anwender benutzen dabei dieselbe grundlegende Syntax, dieselben Parser und dieselben Werkzeuge. 
+
+XML-Parser oder auch XML-Prozessoren können der Anwendung Zugriff auf die XML-Daten geben. Sie arbeiten entweder modellpasiert oder streambasiert. XML-Parser können außerdem prüfen ob ein XML-Dokument wohlgeformt oder bei validierenden XML-Parsern auch valide ist. Wenn ein XML-Dokument wohlgeformt oder valide ist entspricht es jeweils speziellen Regeln. B Meist ist das Parsen genauso wie das Serialisieren Teil einer XML-Anwendung. Beim Parsen wird das Dokument in den Speicher der Anwendung geladen. Durch das Serialisieren werden die, durch ein Programm verarbeiteten, XML-Daten wieder in eine zeichenbasierte Ressource umgewandelt und ausgegeben. Wichtig ist eine XML-Bibliothe.  Diese erlaubt das Parsen und Serialisieren von Dokumenten. Sie muss dazu die XML-Syntax kennen. Außerdem sind die Regeln der Wohlgeformtheit in ihr hinterlegt.  A
+
+XML findet Verwendung in großen und kleinen Anwendungen in vielen verschiedenen Bereichen, wie zum Beispiel im Finanzwesen, beim elektronischen Handel, der Medizin oder der Chemie. Wichtig ist, dass sie auch für den Datenaustausch zwischen verschiedenen Systemen und Netzwerken verwendet wird. Außerdem können Web-Service, ebenso wie Protokolle oder Datenbanken, erstellt werden. Dem Einsatz von XML sind fast keine Grenzen gesetzt, Informationen können in einer, auf jede Anwendungssituation angepassten, Form gespeichert und dargestellt werden. A
+
+\subsection{XML-Dokument}
+
+XML ist eine textbasierte Sprache. Sie ermöglicht es, ein strukturelles Modell der Daten eines Textes zu erstellen. Wichtig beim Einsatz von XML ist das XML-Dokument.B
+
+Das XML-Dokument, im Folgendem auch nur Dokument genannt ist ein Textdokument, das den Regeln von XML entspricht. Es besteht aus einer Menge von XML-Bestandteilen, wie Elementen, Attributen, Texten, Kommentaren, Processing Instructions und einer XML-Deklaration.  
+
+Die \textbf{XML-Deklaration} nimmt immer die erste Zeile eines Dokuments ein. Mit ihrer Hilfe können bestimmte Informationen über das Dokument festgelegt werden. Welche Informationen in der XML-Deklaration enthalten sind ist optional. Es besteht die Möglichkeit die Version, das Encoding und das Standalone zu definieren. Die Version legt fest, welche XML-Spezifikation verwendet werden muss. Sie bestimmt wie die Beziehungen zwischen den einzelnen XML-Bestandteilen aussehen muss. Das Encoding bestimmt die Kodierung des Dokuments. Wird es nicht definiert wird standartmäßig UTF-8 angenommen.Im Standalone wird festgelegt ob auf eine externe Document Type Definition zugegriffen werden muss.  
+\tabto{1.5cm} {\texttt{\textbf{<?xml version="1.1" encoding="UTF-8" standalone="yes" ?>}}
+
+\textbf{Elemente} bestehen aus einem Start-und einem Endtag mit dem Elementnamen. Ein Element kann Text oder andere Elemente enthalten.
+
+\tabto{1.5cm} {\texttt{\textbf{<Beispiel> </Beispiel>}}
+
+\textbf{Attribute} können zwischen dem Start- und dem Endtag eines Elements in Form von Name-Wert-Paaren definiert werden.
+
+\tabto{1.5cm} \texttt{<Beispiel> \textbf{titel="Beispieltitel"} </Beispiel>} 
+
+\textbf{Kommentare} können auch enthalten sein.
+
+\tabto{1.5cm} \texttt{\textbf{<!-- Kommentar --!>}}
+
+\textbf{Processing Instructions} können der bearbeitenden Anwendung bestimmte Metadaten, in Form von bestimmte Informationen und Verarbeitungsanweisungen, übermitteln. Processing Instructions sind an ein bestimmtes Ziel, wie zum Beispiel an den Stylesheet zu richten. 
+
+\tabto{1.5cm} \texttt{\textbf{<?Ziel type="Beispieltyp"?>}}
+
+In der Praxis wird meist zusätzlich zum XML-Dokument ein external Stylesheet eingesetzt. Im external Stylesheet wird die Präsentation des Dokuments gespeichert. Es enthält Daten und Regeln wie das Dokument formatiert und transformiert werden soll.B
+
+Ein Vorteil von XML ist der Einsatz von Namensräumen in XML-Dokumenten.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 XML
 Die Extensible Markup Language (XML) basiert auf der standard generalized markup language (SGML) und ist ein Standard der vom World Wide Web Consortium (W3C) beschlossen wurde. Markup ist eine Methode um Metadaten zu übertragen. Eine Markup Sprache ist eine Sprache die definiert welche Bestandteile in einem Textdokument erlaubt sind, wie sie zusammengesetzt und grundsätzlich strukturiert sein müssen. SGML-basierte Markup Sprachen verwenden hierfür Tags um die Metadaten (Elemente) voneinander zu trennen. XML und SGML sind noch dazu  auch Metasprachen, da sie verwendet werden können um andere Sprachen und sogar andere Metasprachen zu definieren. 
 XML ist textbasiert und ermöglicht es uns ein strukturelles Model der Daten eines Textes zu erstellen. In der Praxis wird dabei die Datenstruktur von der Präsentation getrennt, indem ein external Stylesheet erstellt wird. Dieser enthält Daten und Regeln wie das Dokument formatiert und transformiert werden soll. B
