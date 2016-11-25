@@ -1,3 +1,13 @@
+Xinclude – XML-Inclusion
+XInclude ist eine Alternatice zu DTDs und dem Einsatz von external Entitys. A Es legt ein Verarbeitungsmodell und eine Syntax für die allgemeine Einbindung von externen Textfragmenten fest.  Textfragmente können Teile von XML-Dokumenten oder Textdokumenten, oder ganze Dokumente sein. Die Syntax nutzt hierbei vorhandene XML-Konstrukte wie Elemente, Attribute und URI-Referenzen.B  
+Die Verarbeitung mittels DTDs und external Entitys erfolgt während des Parsens  des XML-Dokuments.B  Im Gegensatz dazu erfolgt die Verarbeitung bei XInclude durch einen eigenen XInclude Prozessor. Dieser ersetzt die \texttt{xi:include} Elemente mit den Teilen der Dokumenten oder den ganzen Dokumenten auf die der Verweis zeigt.C
+C
+
+C http://www.xml.com/lpt/a/1009
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 A
 
 xml inclusion kurz xinclude ist eine xml erweiterung, die auf dem xpointer standard aufbaut. sie führt einen einheitlichen mechanismus ein um externe xml doks (aber auch textdoks) oder teile davon über verknüpfungsinfo in ein bestehendes Dokument einzunbinden. dies stellt eine alternative mit dtds und externen entitiys dar.
