@@ -1,0 +1,34 @@
+Xpath – XML Path Language B
+
+\textbf{Factories? WDDX, XQuery, XPAth in DOM SAX,XPAth data model , xPath injection}
+XPath ist eine Sprache, mit derer Hilfe in XML-Dokumenten navigiert werden kann. Dazu erstellt sie aus dem Infoset des XML-Dokuments ein Datenmodell. In diesem sind die einzelnen XML-Bausteine als  Knoten eines hierarchischen XML-Baumes realisiert. Es gibt also zum Beispiel einen Wurzelknoten, Elementknoten oder Textknoten. Jeder Knoten wird durch einen erweiterten Namen, bestehend aus einem lokalem Teil in Form eines Strings und einem Namensraum  identifiziert. Für Elemente desselben XML-Dokuments besteht anhand der Start Tags eine bestimmte Ordnung in der sie im XML-Baum auftreten. Die Reihenfolge von Attributen, Namespaceknoten und von Knoten aus unterschiedlichen Quellen ist aber nicht  ausschließlich festgelegt. Somit ist der Aufbau des XML-Baumes nicht vollständig definiert. 
+Mittels XPath können dann einzelne Knoten oder ganze Knotenmengen ermittelt werden und deren Informationen extrahiert werden. Dazu wird eine Syntax verwendet, die nicht auf XML aufbaut. So kann XPath einfach verwendet werden um in URIs oder XML-Attributswerten Information zu finden.  XPath stellt auch Standardfunktionen zur Manipulation von Strings, Zahlen, Booleans und Knotenmengen bereit. Mit ihrer Hilfe können die Knoten genauer eingeschränkt und lokalisiert werden. Dafür benutzt XPath einen Lokalisierungspfad.
+Ein Lokalisierungspfad wird verwendet um vom Wurzelelement zu einem bestimmten Knoten oder einer bestimmten Knotenmenge innerhalb eines XML-Dokuments zu navigieren. Ein Lokalisierungspfad setzt sich aus mehreren Lokalisierungsschritten zusammen. In jedem Lokalisierungsschritt werden Angaben bezüglich der Axe, dem Knotentyp und den Einschränkungen, denen die Knotenmenge unterliegen soll, benötigt. 
+Mithilfe der \textbf{Axe} wird festgelegt in welche Richtung der Schritt gehen soll. Beispiele für Axenrichtungen sind \texttt{child}, \texttt{attribute}, \texttt{descendant}, \texttt{ancestor} oder \texttt{self}.
+Der \Textbf{Knotentyp} und der erweiterte Name des Knotens werden mithilfe eines Knotentests spezifiziert. Knotentypen können hierbei zum Beispiel Attribute, Namespaces oder Elemente sein.
+Die bisher gefundene Knotenmenge kann dann durch \textbf{Einschränkungen} begrenzt werden.  Diese Einschränkungen können mithilfe von Null oder mehreren boolschen Prädikaten erfolgen.
+XPath kommt in mehreren anderen XML basierten Technologien zum Einsatz. Beispiele sind XSLT, XPointer, XForms oder XML Schema.A
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Factories? WDDX, XQuery, XPAth in DOM SAX,XPAth data model , xPath injection}
+
+XPath (XML Path Language) ist eine Sprache die die Addressierung von, oder die Navigation zu ausgewählten Teilen von XML-Dokumenten erlaubt. Es wird eine nicht-XML Syntax verwendet, um den Einsatz von URIs und XML Attributswerten zu vereinfachen. Standard Funtionen zur Manipulation von Strings, Zahlen, Booleans und Knotenmengen werden bereitgestellt. B
+
+XPath erstellt aus dem Infoset des XML-Dokuments ein Datenmodell, welches die Knoten als hierarchischen XML-Baum modelliert. Es gibt einen Wurzel Knoten, Element Knoten, Text Knoten, Attribut Knoten, Namespace Knoten, Processing Instruction Knoten und Kommentar Knoten. Jeder Knoten hat einen erweiterten Namen, bestehend aus einem lokalen Teil (String) und einem Namensraum (URI oder NULL). Für Elemente desselben Xml-- Dokuments besteht anhand der Start Tags eine bestimmte Ordnung. Die Reihenfolge von Attributen, Namespace Knoten und von Knoten aus unterschiedlichen Quellen ist nicht vollständig definiert. B
+
+Mithilfe eines Lokalisierungspfades wird eine Menge von Knoten zurückgegeben. Er besteht aus einzelnen Lokationsschritten. Jeder einzelne Schritt besteht aus drei Angaben: Der Axe, in welche Richtung der Schritt geht (z. B.: Self, Child, Parent, Ancestor). Dem Knotentest, der den Knoten Typ und den erweiterten Namen spezifiziert. Und Null oder mehreren boolschen Prädikaten, die die bisher gefundene Knotenmenge einschränken.B
+
+Xpath ist in mehreren anderen XML basierten Technologien, zum Beispiel in XSLT, XPointer, XForms oder dem XML Schema, integriert. A
+
+%has a set of functions that provide access to XML documents (fn:doc, fn:doc-available), collections (fn:collection, fn:uri-collection), text files (fn:unparsed-text, fn:unparsed-text-lines, fn:unparsed-text-available), and environment variables (fn:environment-variable, fn:available-environment-variables). These functions are defined in Section 14.6 Functions giving access to external information FO31. D
+
+%Java und xml d		A
+
+%java und xml e		B
+
+%w3c				C
+
+%w3c path 3.1		D
+

@@ -1,0 +1,71 @@
+Xinclude – XML-Inclusion
+XInclude ist eine Alternatice zu DTDs und dem Einsatz von external Entitys. A Es legt ein Verarbeitungsmodell und eine Syntax für die allgemeine Einbindung von externen Textfragmenten fest.  Textfragmente können Teile von XML-Dokumenten oder Textdokumenten, oder ganze Dokumente sein. Die Syntax nutzt hierbei vorhandene XML-Konstrukte wie Elemente, Attribute und URI-Referenzen.B  
+Die Verarbeitung mittels DTDs und external Entitys erfolgt während des Parsens  des XML-Dokuments.B  Im Gegensatz dazu erfolgt die Verarbeitung bei XInclude durch einen eigenen XInclude Prozessor. Dieser ersetzt die \texttt{xi:include} Elemente mit den Teilen der Dokumenten oder den ganzen Dokumenten auf die der Verweis zeigt.C
+C
+
+C http://www.xml.com/lpt/a/1009
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+A
+
+xml inclusion kurz xinclude ist eine xml erweiterung, die auf dem xpointer standard aufbaut. sie führt einen einheitlichen mechanismus ein um externe xml doks (aber auch textdoks) oder teile davon über verknüpfungsinfo in ein bestehendes Dokument einzunbinden. dies stellt eine alternative mit dtds und externen entitiys dar.
+
+Wikipedia
+
+XML Inclusions, kurz XInclude, ist eine W3C-Empfehlung, die es ermöglicht, innerhalb von XML-Dokumenten auf Teile anderer XML- oder Textdokumente zu verweisen. Diese „Verweise“ werden beim Auflösungsvorgang durch den Inhalt der referenzierten Dokumente ersetzt.
+
+Der Unterschied zwischen XML- und Text-Verweis ist, dass Inhalte von referenzierten Text-Dokumenten nicht vom XML-Parser verarbeitet werden, sondern ähnlich wie ein CDATA-Abschnitt exakt so eingefügt werden, wie sie im referenzierten Dokument stehen.
+
+Im Gegensatz zu Textdokumenten, auf die immer nur als Ganzes verwiesen werden kann, erlaubt XInclude auch, lediglich auf Teile eines XML-Dokuments zu verweisen. Die Adressierung solcher Teildokumente erfolgt mittels XPointer
+
+http://www.xml.com/lpt/a/1009
+
+XInclusion is not part of XML 1.0 or the XML Infoset. XML parsers do not perform inclusions automatically. To resolve XIncludes, a document must be passed through an XInclude processor that replaces the xi:include elements with the documents they point to. This may be done automatically by a server side process or it might be done on the client side by an XInclude-aware browser. It
+
+. It is a separate step which you may or may not perform when and where it is useful to you.
+
+For example, consider validation against a schema. A document can be validated before inclusion, after inclusion, or both. If you validate the document before the xi:include elements are replaced, then the schema has to declare the xi:include elements just like it would declare any other element. If you validate the document after the xi:include elements are replaced, then the schema has to declare the replacement elements. Inclusion and validation are separate, orthogonal processes that can be performed in any order which is convenient in the local environment.
+
+B
+
+This document specifies a processing model and syntax for general purpose inclusion. Inclusion is accomplished by merging a number of XML information sets into a single composite infoset. Specification of the XML documents (infosets) to be merged and control over the merging process is expressed in XML-friendly syntax (elements, attributes, URI references).
+
+XInclude defines a namespace associated with the URI http://www.w3.org/2001/XInclude. The XInclude namespace contains two elements with the local names include and fallback. For convenience, within this specification these elements are referred to as xi:include and xi:fallback respectively.
+
+xi:include:
+href
+
+A value which, after appropriate escaping (see 4.1.1 Escaping of href attribute values) has been performed, results in a URI reference or an IRI reference specifying the location of the resource to include. The href attribute is optional; the absence of this attribute is the same as specifying href="", that is, the reference is to the same document. If the href attribute is absent when parse="xml", the xpointer attribute must be present. Fragment identifiers must not be used; their appearance is a fatal error. A value that results in a syntactically invalid URI or IRI should be reported as a fatal error, but some implementations may find it impractical to distinguish this case from a resource error.4
+
+parse
+
+Indicates whether to include the resource as parsed XML or as text. The parse attribute allows XInclude to give the author of the including document priority over the server of the included document in terms of how to process the included content. A value of "xml" indicates that the resource must be parsed as XML and the infosets merged. A value of "text" indicates that the resource must be included as the character information items. This attribute is optional. When omitted, the value of "xml" is implied (even in the absence of a default value declaration). Values other than "xml" and "text" are a fatal error.
+
+xpointer
+
+When parse="xml", the XPointer (see [XPointer Framework]) contained in the xpointer attribute is evaluated to identify a portion of the resource to include. This attribute is optional; when omitted, the entire resource is included. The xpointer attribute must not be present when parse="text". If the xpointer attribute is absent, the href attribute must be present.
+
+Encoding
+When parse="text", it is sometimes impossible to correctly detect the encoding of the text resource. The encoding attribute specifies how the resource is to be translated. The value of this attribute should be a valid encoding name. The encoding attribute has no effect whenparse="xml".
+
+Accept
+
+The value of the accept attribute may be used by the XInclude processor to aid in content negotiation. When the XInclude processor fetches a resource via HTTP, it should place the value of the accept attribute, if one exists, in the HTTP request as an Accept header as described in section 14.1 of [IETF RFC 2616]. Values containing characters outside the range #x20 through #x7E must be flagged as fatal errors.
+accept-language
+
+The value of the accept-language attribute may be used by the XInclude processor to aid in content negotiation. When the XInclude processor fetches a resource via HTTP, it shouldplace the value of the accept-language attribute, if one exists, in the HTTP request as an Accept-Language header as described in section 14.4 of [IETF RFC 2616]. Values containing characters outside the range #x20 through #x7E are disallowed in HTTP headers, and mustbe flagged as fatal errors.
+
+The children property of the xi:include element may include a single xi:fallback element; the appearance of more than one xi:fallback element, an xi:include element, or any other element from the XInclude namespace is a fatal error. Other content (text, processing instructions, comments, elements not in the XInclude namespace, descendants of child elements) is not constrained by this specification and is ignored by the XInclude processor, that is, it has no effect on include processing, and does not appear in the children properties of the result infoset. Such content might be used by applications analyzing a pre-inclusion infoset, or be made available to an application post-inclusion through means other than the normal infoset properties.
+Xi:fallback
+The xi:fallback element appears as a child of an xi:include element. It provides a mechanism for recovering from missing resources. When a resource error is encountered, the xi:include element is replaced with the contents of the xi:fallback element. If the xi:fallback element is empty, thexi:include element is removed from the result. If the xi:fallback element is missing, a resource error results in a fatal error.
+
+https://www.w3.org/TR/xinclude/...24.nov
+
+Many programming languages provide an inclusion mechanism to facilitate modularity. Markup languages also often have need of such a mechanism. This specification introduces a generic mechanism for merging XML documents (as represented by their information sets) for use by applications that need such a facility. The syntax leverages existing XML constructs - elements, attributes, and URI references.
+
+B
+Most programming languages provide some kind of inclusion mechanism that facilitates modular storage of parts of a programm. Xinclude provides a processing model and syntax for general-purpose inclusion of XML data. This is accomplished by merging multiple xml infosetzt into one composite xml infoset. Note that xinclude operates upon post-parsing infosets, rather than the underlying xml data in raw form.
+The xinclude merging process is controlled using elements and attributes in the xl 1.0 syntax, with the additional use of xml namespaces to ensure unique names for this special markup. Xinclude is a low leel process that is intended to transform an xml infoset and pass it to a higher lecel application. 
+Xinclude is complementary to external entities. Dtd, and external entity processing occurs while parsing xml data, but xinclude uses a completely different approach based upon the datas infoset.

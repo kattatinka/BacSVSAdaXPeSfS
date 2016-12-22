@@ -1,0 +1,125 @@
+xml überarbeitet
+
+Die Extensible Markup Language, kurz XML, ist eine Markup Sprache. Markup Sprachen werden verwendet um zu definieren welche Bestandteile in einem Textdokument erlaubt sind, wie sie zusammengesetzt und grundsätzlich struktueriert sein müssen. XML ist ein Standard der vom World Wide Web Consortium (W3C) beschlossen wurde. Sie basiert auf der Standard Generalized Markup Language (SGML). Bei SGML-basierten Markup Sprachen werden Tags verwendet, um die Metadaten also die einzelnen Elemente voneinander zu trennen. Die Markup Sprachen XML und SGML sind außerdem auch Metasprachen. Das heißt sie können verwendet werden um andere Sprachen und sogar andere Metasprachen zu definieren.A
+
+XML ist ein Standard, mit dessen Hilfe XML-Dokumente generiert werden können. Diese können von jedem verarbeitet werden der seinerseits XML Verwendet. Eine wichtige Eigenschaft von XML ist, dass es erweiterbar ist. Es können XML-Vocabulare, die die Beschreibung von XML-Daten enthalten, geteilt und ausgetauscht werden. Alle Anwender benutzen dabei dieselbe grundlegende Syntax, dieselben Parser und dieselben Werkzeuge. 
+
+XML-Parser oder auch XML-Prozessoren können der Anwendung Zugriff auf die XML-Daten geben. Sie arbeiten entweder modellpasiert oder streambasiert. XML-Parser können außerdem prüfen ob ein XML-Dokument wohlgeformt oder bei validierenden XML-Parsern auch valide ist. Wenn ein XML-Dokument wohlgeformt oder valide ist entspricht es jeweils speziellen Regeln. B Meist ist das Parsen genauso wie das Serialisieren Teil einer XML-Anwendung. Beim Parsen wird das Dokument in den Speicher der Anwendung geladen. Durch das Serialisieren werden die, durch ein Programm verarbeiteten, XML-Daten wieder in eine zeichenbasierte Ressource umgewandelt und ausgegeben. Wichtig ist eine XML-Bibliothe.  Diese erlaubt das Parsen und Serialisieren von Dokumenten. Sie muss dazu die XML-Syntax kennen. Außerdem sind die Regeln der Wohlgeformtheit in ihr hinterlegt.  A
+
+XML findet Verwendung in großen und kleinen Anwendungen in vielen verschiedenen Bereichen, wie zum Beispiel im Finanzwesen, beim elektronischen Handel, der Medizin oder der Chemie. Wichtig ist, dass sie auch für den Datenaustausch zwischen verschiedenen Systemen und Netzwerken verwendet wird. Außerdem können Web-Service, ebenso wie Protokolle oder Datenbanken, erstellt werden. Dem Einsatz von XML sind fast keine Grenzen gesetzt, Informationen können in einer, auf jede Anwendungssituation angepassten, Form gespeichert und dargestellt werden. A
+
+\subsection{XML-Dokument}
+
+XML ist eine textbasierte Sprache. Sie ermöglicht es, ein strukturelles Modell der Daten eines Textes zu erstellen. Wichtig beim Einsatz von XML ist das XML-Dokument.B
+
+Das XML-Dokument, im Folgendem auch nur Dokument genannt ist ein Textdokument, das den Regeln von XML entspricht. Es besteht aus einer Menge von XML-Bestandteilen, wie Elementen, Attributen, Texten, Kommentaren, Processing Instructions und einer XML-Deklaration.  
+
+Die \textbf{XML-Deklaration} nimmt immer die erste Zeile eines Dokuments ein. Mit ihrer Hilfe können bestimmte Informationen über das Dokument festgelegt werden. Welche Informationen in der XML-Deklaration enthalten sind ist optional. Es besteht die Möglichkeit die Version, das Encoding und das Standalone zu definieren. Die Version legt fest, welche XML-Spezifikation verwendet werden muss. Sie bestimmt wie die Beziehungen zwischen den einzelnen XML-Bestandteilen aussehen muss. Das Encoding bestimmt die Kodierung des Dokuments. Wird es nicht definiert wird standartmäßig UTF-8 angenommen.Im Standalone wird festgelegt ob auf eine externe Document Type Definition zugegriffen werden muss.  
+\tabto{1.5cm} {\texttt{\textbf{<?xml version="1.1" encoding="UTF-8" standalone="yes" ?>}}
+
+\textbf{Elemente} bestehen aus einem Start-und einem Endtag mit dem Elementnamen. Ein Element kann Text oder andere Elemente enthalten.
+
+\tabto{1.5cm} {\texttt{\textbf{<Beispiel> </Beispiel>}}
+
+\textbf{Attribute} können zwischen dem Start- und dem Endtag eines Elements in Form von Name-Wert-Paaren definiert werden.
+
+\tabto{1.5cm} \texttt{<Beispiel> \textbf{titel="Beispieltitel"} </Beispiel>} 
+
+\textbf{Kommentare} können auch enthalten sein.
+
+\tabto{1.5cm} \texttt{\textbf{<!-- Kommentar --!>}}
+
+\textbf{Processing Instructions} können der bearbeitenden Anwendung bestimmte Metadaten, in Form von bestimmte Informationen und Verarbeitungsanweisungen, übermitteln. Processing Instructions sind an ein bestimmtes Ziel, wie zum Beispiel an den Stylesheet zu richten. 
+
+\tabto{1.5cm} \texttt{\textbf{<?Ziel type="Beispieltyp"?>}}
+
+In der Praxis wird meist zusätzlich zum XML-Dokument ein external Stylesheet eingesetzt. Im external Stylesheet wird die Präsentation des Dokuments gespeichert. Es enthält Daten und Regeln wie das Dokument formatiert und transformiert werden soll.B
+
+Ein Vorteil von XML ist der Einsatz von Namensräumen in XML-Dokumenten.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+XML
+Die Extensible Markup Language (XML) basiert auf der standard generalized markup language (SGML) und ist ein Standard der vom World Wide Web Consortium (W3C) beschlossen wurde. Markup ist eine Methode um Metadaten zu übertragen. Eine Markup Sprache ist eine Sprache die definiert welche Bestandteile in einem Textdokument erlaubt sind, wie sie zusammengesetzt und grundsätzlich strukturiert sein müssen. SGML-basierte Markup Sprachen verwenden hierfür Tags um die Metadaten (Elemente) voneinander zu trennen. XML und SGML sind noch dazu  auch Metasprachen, da sie verwendet werden können um andere Sprachen und sogar andere Metasprachen zu definieren. 
+XML ist textbasiert und ermöglicht es uns ein strukturelles Model der Daten eines Textes zu erstellen. In der Praxis wird dabei die Datenstruktur von der Präsentation getrennt, indem ein external Stylesheet erstellt wird. Dieser enthält Daten und Regeln wie das Dokument formatiert und transformiert werden soll. B
+Ein XML-Dokument, im Folgendem nur Dokument genannt, ist ein Textdokument, das den Regeln von XML entspricht. Es besteht also aus einer Menge von XML-Bestandteilen, wie Elementen, Attributen, Texten, Kommentaren und einer XML Deklaration. Elemente bestehen aus einem Start-und einem Endtag mit dem Elementnamen. Es kann Text oder andere Elemente enthalten. Attribute können innerhalb eines Starttags in Form von Name-Wert-Paaren definiert werden. Die XML Deklaration nimmt die erste Zeile eines Dokuments ein. Sie enthält die Version der verwendeten XML Spezifikation, welche die Beziehungen zwischen den einzelnen Bestandteilen festlegt. Das Encoding, also die Kodierung des Dokuments und das Standalone, dieses wird nur selten angegeben und legt fest ob auf eine externe DTD zugegriffen werden muss. Weiter in einem Dokument enthalten sein können Processing instructions (Pis). Diese enthalten Metadaten, also Verarbeitungsanweisungen und Informationen für die Anwendungen die das Dokument gerade verarbeitet. 
+Das Parsen und Serialisieren sind meistens Teil einer XML Anwendung. Beim Parsen wird das Dokument in den Speicher der Anwendung geladen. Durch das Serialisieren werden die durch ein Programm verarbeiteten XML Daten wieder in eine zeichenbasierte Ressource umgewandelt und ausgegeben.  Wichtig hierfür ist eine XML-Bibliothek. Diese erlaubt das Parsen und Serialisieren von Dokumenten, dazu muss sie die XML Syntax kennen, auch die Regeln der Wohlgeformtheit sind dort hinterlegt.  A
+XML ist ein Standard der verwendet wird, um Dokumente zu generieren die von jedem verarbeitet werden kann, der XML verwendet. Eine wichtige Eigenschaft ist die Erweiterbarkeit, indem zum Beispiel ein XML Vokabular, das die Beschreibung von XML Daten enthält, geteilt werden kann. Dabei benutzen alle dieselbe grundlegende Syntax, dieselben Parser und dieselben Werkzeuge. Mithilfe von zwei großen Programmiermodellen kann man Zugriff auf die XML Daten erhalten, dem Document Oriented Model (DOM) und der Simple API for XML (SAX). DOM und SAX sind XML Parser oder auch XML Prozessoren, im Folgenden nur Parser genannt, die prüfen ob ein Dokument wohlgeformt und bei validierenden Parsern auch valide ist, also speziellen Regeln entspricht. B
+XML findet Verwendung in großen und kleinen Anwendungen in vielen verschiedenen Bereichen, wie zum Beispiel im Finanzwesen, beim elektronischen Handel, der Medizin oder der Chemie. Wichtig ist sie auch für den Datenaustausch zwischen verschiedenen Systemen und Netzwerken. Außerdem können Web-Service, ebenso wie Protokolle oder Datenbanken, erstellt werden. Dem Einsatz von XML sind fast keine Grenzen gesetzt, Informationen können in einer, auf jede Anwendungssituation angepassten, Form gespeichert und dargestellt werden. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Grundlagen
+
+markup language /Beschreibungssprache
+kind von sgml
+Einsatzgebiete
+Namespaces um das zusammenzulegen und alles passt zusammen
+web soap ???
+generelle funktion von xml parsern und alles
+serialisierung und validierung
+Xml is standard, you can generate data documents that may be processed by anyone else who uses xml
+
+A
+Cml steht für  extensible markup  language. Dabei handeklt es sich um einen standard, der vom w5c bereits im jahre 2009 bescholssen wurde und als metasprache frü die auszeinung von textdokumenten dient. Xml defiiert also, welche bestandteile in einem solchen textdok erlaubt sind und wie diese einzelnen bestandteile eines solchen textdoks zusammengesetzt und grundsötzlich strukturiert sein möüssen.
+Ein Xml dokument ist ein textdokument, dass den xml Regeln entspricht. XML dok wird zu dok abgekürzt.
+Das xml dok
+Beliebiges textfragment, das den regeln von xml folgt und dementsprechend eine sammlung an bestimmten xml bestandteilen enthält. 
+Wichtigste bestandteile eines xml doks;
+Elemente
+Besteht aus einem Start und einem End tag. Innerhalb eines taxs wird der elementname definiert. Er muss ein gültiger xml name sein. 
+Zwischen den beiden tags können inhalte wie beispielsweise text oder andere elemente stehen.
+Attribute
+Innerhalb eines start tags können optional beliebig viele attribute in form von name wert paaren frü das element definiert werden. 
+Texte
+Beliebig langer freitext innerhalb eines elements. – ENTITY REFERENZEN FÜNF VORDEFINIERTE: feht auch eigene zu definieren uum beispielsm´weise auf zeichenkennen oder ganze xml doks zu verweisen.
+Kommentare
+Xml deklaration
+Die erste zeile eines xml doks. 
+Version: versionsnummer der verwendeten Xml spezifikation. 
+Encoding: kodierung des xml doks bestimmen. 
+Sttandalone: selten angegeben und legt festm ob auf eine externe dtd zugegriffen werden muss oder nicht.
+
+Processing instructions
+Konstrukt innerhalb con dok, verarbeitungsanweisung oder pi. Mit hilfe einer pi ist es möglich derjenigen anwendung, die das dok gerade verarbeitet, bestimmte info und anweisungen zu übergeben. Pi gehört nicht zum eigentlichen inhalt eines doks. Stattdessen sind sie als metadaten für die verarbeitenden anwendungen zu sehen.
+Entities---
+Alle diese bestandteile werden häufig als knoten bezeichnet. Manche beziehungen dieser knoten sind durch die xml spezifikation klar vorgegeben. 
+Parsen und serialisieren
+Diese beiden vorgänge stellen die schnitstellen zur außenwelt der anwendung dar und sind praktisch immer teil einer typischen xml applikation.
+Als parsen bezeichnet man das einlesen eines doks in den speicher der anwendung. Das einzulesende dok liegt dabei zeichenbasiert vor, ist also rein physikalisch gesehen nur eine menge von byes oder zeichen.
+Serialisieren nennt man den genau umgekehrten prozess: hier werden xml daten aus dem programm wieder in eine reichenbasierte ressource konvertiert und ausgegeben. 
+Die semantischen informationen eines xml doks, welchen xml knoten habe ich gerade vor mir, wie heißt das element oder attribut oder welchen textinhalt hat der textknoten oder der kommentar, sind beim parsen oder verarbeiten von xml doks wichtig. Die eingelesenen zeichen müssen also interpretiert und in einem xml spezifischen datenformat bereitgestellt werden. Unsere parse logik muss also wissen, welche zeichen in einem dok eine besondere bedeutung haben und was diese bedeutung ist. 
+Beim serialisieren muss auch eine konvertierung stattfinden. Aus den von uns übermittelten infos muss wieder ein gültiges dok geschaffen werden, mit allen dazu nötigen auszeichnungs inhalten. 
+XML-Bibliotheken
+Kernaufgabe einer jeden xml bibliothek, die uns das parsen und serialisieren von xml doks erlaubt:
+Kennt die xml syntax, also di sonderzeichen und weiß wie daraus die verschiedenen knotentypen abeleitet werden.
+Regeln der wohlgeformtheit sind hinterlegt
+Ein spezifisches datenformat für die repräsentation dieser info im programm wird beereitgestellt.
+
+Parsen und serialisieren heißen die beiden prozesse die zwischen diesen welten konvertieren. Die zugehörigen software module einer xml bibliothek nennt man dementsprechend parser und serializer.
+Xml parser wohlgeformtheit
+validierung
+B
+
+Markup language	
+Various forms of delimiters have been  used to define the boundaries of containers for content,special symbol glyphs, opresentation style of the text, or other special features of a dok. 
+Verschiedene Formen von Begrenzern wurden verwendet, um die Grenzen von Containern für Inhalt, spezielle Symbolglyphen, Darstellungsart des Textes oder andere spezielle Merkmale eines dok zu definieren.
+Markup is a method of conveying meta data (information about another dataset).
+
+Xml is based upon, a mature markup language called standard generalized markup language(SGML). Hypertext markup language is also a upon sgml, indeed it is an application of sgml. Html4 is called extensible hypertext markup language (XHTML), which is similary an application of xml. All of these meta langugages are for meta data, bug sgml and xml may be further considered meta-langugages, since they can be used to vreate other meta data languages. 
+Sgml based markup languages all use literal strings of characters, called tags to delimit the major components of the meta date, called elements.
+Xml allows us to vreate a structural model of the data within the text. Xml praxis is to separate the data structure from presentation. –> external stylesheet
+Goals of xml 
+Extensibility and separation of semantics and presentation
+Simplicity
+Internationalization
+Usable ofer the internet
+Interoperability with sgml
+
+Xml core and its key components and extensions are
+Xml 2.0 syntax, including dtds
+Namespaces in xml
+Sml schema 
+
+Xml vocab
+The most significant feature of xml is its extensibility. While every corporation could choose to define their own xml vocab, one of the strangths of xml is the sharing of vocabularies, all of which use the same basic syntax, parsers and other tools.
+An xml vocab is a description of xml data that is used as the medium for information exchange, often within a specific domain.
+There are two major programming models that can be use dto access xml data: DOM und SAX.
+

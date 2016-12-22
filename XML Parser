@@ -1,0 +1,232 @@
+XML Parser
+Ein XML Parser, im Folgendem auch nur Parser genannt ist ein Programm, das ein Dokument einliest und die enthaltenen Informationen, zum Beispiel welche Elemente mit welchen Attributen enthalten sind, an die darüberliegende Anwendung weitergibt. Dabei überprüft es, wie bereits erwähnt die Wohlgeformtheit des Dokuments. Auch erwähnt wurde, dass ein validierender Parser ein Dokument mithilfe von einem DTD oder XML-Schema gegen eine Grammatik prüfen kann. 
+Es gibt dabei zwei Grundprinzipien, wie ein Dokument von einem Parser verarbeitet werden kann. Es gibt die modellbasierte  und die streambasierte Verarbeitung.
+\subsubsection{modellbasierte Verarbeitung}
+Bei der modellbasierten Verarbeitung werden Objektmodelle eines Dokuments erstellt und komplett in den Speicher geladen, bei dieser Art der Verarbeitung wird also ein großer Speicher benötigt. Mithilfe dieser hierarchischen Objektmodelle können Dokumente geparst und serialisiert werden. Für die modellbasierte Verarbeitung werden Modellklassen benötigt, die die Informationen aus dem Dokument beziehen können. Gebraucht werden außerdem eine Parser Implementierung um den Objektmodellbaum zu erzeugen und zurückzugeben, eine Serializer Implementierung um aus diesem Objektmodellbaum das Dokument zu erstellen und eventuell eine Implementierung die anhand einer Grammatik prüft ob das Modell valide ist. Der wichtigste Standard der die modellbasierte Verarbeitung verwendet ist das Document Object Model (DOM).
+\subsubsubsechtion{DOM – Document Object Model}
+DOM ist keine Anwendung, es ist nur ein Interface das die DOM Bibliothek zur Verfügung stellt. Das Interface muss dann spezifiziert und implementiert werden. Die Daten des Dokuments werden durch Pull Parsing, in Form von typischen XML Bausteinen, erhalten. Der Entwickler ruft in seiner Verarbeitungslogik den Parser auf und erhält dann die geforderten Daten zurück. Bei DOM wird das gesamte Dokument in Form eines generischen Objektbaums in den Speicher geladen. Elemente, Attribute, Textelemente und Prozessor Informationen werden als Knoten eines Baumes dargestellt. Jeder Knoten wird durch ein eigenes Interface definiert. Jedes Interface stellt Funktionen zur Verfügung mit dessen Hilfe alle wichtigen Informationen aus dem Dokument abgefragt werden und der Objektbaum manipuliert werden können. Anhand des Objektbaums kann beliebig im Dokument navigiert und gesucht werden. Er kann außerdem modifiziert werden, indem zum Beispiel ein Knoten eingefügt, entfernt oder verändert wird. 
+\subsubsection{streambasierte Verarbeitung}
+Die streambasierte Verarbeitung beschäftigt sich vorrangig mit dem Parsen von Dokumenten. Das Dokument wird dabei sequentiell durchlaufen, benötigt also auch keinen großen Speicher. Die aufkommenden Zeichen werden mithilfe der Syntaxregeln interpretiert und dann an die darüberliegende Anwendung weitergegeben. Es wird immer nur ein Teil aus dem Dokument zurzeit bearbeitet, dadurch ist diese Art der Verarbeitung sehr performant und effizient. Es gibt zwei hauptsächliche Anwendungsinterfaces die dieser Art der Verarbeitung verwenden, Simple API for XML (SAX) und Streaming API for XML (StAX).
+\ subsubsubsechtion {SAX - Simple API for XML}
+SAX ist ein Anwendungsinterface, das spezifiziert und implementiert werden muss. Es beschäftigt sich ausschließlich mit dem Parsen von Dokumenten. Dabei wird das Dokument von vorne nach hinten durchlaufen und nach XML Syntax interpretiert. Für jeden gefundenen XML Baustein wird dann ein SAX Event erstellt. Diese werden dann mithilfe einer Content Handler Klasse für die Anwendung aufbereitet. Der Content Handler enthält für fast jeden SAX Eventtyp eine eigene Methode, in der festgelegt wird, wie die Anwendung beim Auftreten dieses Events reagieren soll. Diese Form der Verarbeitung bezeichnet man als Push Parsing, die Anwendung erhält durch den Parser, mithilfe des Content Handlers, schrittweise die Inhalte des Dokuments. Der Entwickler muss sich dabei nicht um Kontrollfluss oder Steuerung der Anwendung kümmern. A
+\ subsubsubsechtion {StAX - Streaming API for XML}
+StAX ist eine Alternative zu SAX, die sich zusätzlich zum Parsen auch mit dem Serialisieren von Dokumenten beschäftigt. Das Dokument wird wieder schrittweise durchlaufen und nach XML Syntax interpretiert. Die Anwendungsinterfaces von SAX und StAX bestehen aus einigen gemeinsamen Klassen und Interfaces und für die jeweilige Variante gibt es zusätzlich ein paar spezifische Interfaces. Das grundlegende Konzept ist dasselbe, der Unterschied liegt in der Art der Darstellung der Daten für den Entwickler und der Zugriffsweise. Der Zugriff erfolgt über Pull Parsing, die Daten werden also wenn gefordert zurückgegeben und der Entwickler muss sich selbst um den Kontrollfluss im Programm kümmern. Dabei gibt es zwei Arten wie dies geschehen kann, mittels Curser API oder mittels Event Iterator API. 
+Bei der Curser API wird das Dokument, wie bei SAX, in die XML Bausteine aufgeteilt. Der Parser bewegt schrittweise einen Curser über die einzelnen Bausteine des Dokuments. Über den jeweiligen Teil kann der Entwickler, mithilfe der Funktionen des Parsers, Informationen erhalten. Er ist schneller aber auch unkomfortabler als die Event Iterator API.
+Bei der Event Iterator API werden, ähnlich wie bei DOM, die inhaltlichen Bausteine des Dokuments in Form von Objekten bereitgestellt. Für jeden Event wird ein Objekt erzeugt und zurückgegeben, infolge dessen ist sie langsamer als die Curser API.
+Wie bereits erwähnt kann StAX Dokumente auch Serialisieren, dies erfolgt durch Push Serializing. Dabei teilt der Entwickler dem Serializer schrittweise die Inhalte der Datei mit. Dies geschieht in der Form in der das Dokument auch ausgelesen wird, also mittels Start-, End-Tags, Kommentaren, Attributen und Elementen. A
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Xml parser
+
+Ein Parser ist ein Programm, das ein Dokument (das kann irgendeine Art von Datei sein) einmal "durchliest", und die enthaltenen Informationen darüberliegenden Schichten der Anwendung in irgendeiner Form zur Verfügung stellt.
+Nichts anderes macht ein XML-Parser. Er nimmt das XML-Dokument her, und stellt die enthaltenen Informationen (also Elemente, Attribute usw.) der Anwendung zur Verfügung. Will man also ein Programm schreiben, das XML-Daten verarbeiten kann, kommt man nicht umhin entweder selbst einen Parser zu schreiben, oder einen vorhandenen Parser zu benutzen.
+Von der zuerst genannten Möglichkeit möchte ich abraten, da das erstens recht aufwendig wird, und zweitens entsprechende XML-Parser frei verfügbar sind. Ihr könnt eure Energien also voll und ganz auf das Schreiben der Anwendung konzentrieren (warum mehr Arbeit machen als nötig?)
+http://www.uzi-web.de/parser/parser_was.htm
+A:
+
+Parsen
+Validierende und nicht validierende
+Expliziete und implizite validierung
+zwei formen der validierung als teil des parse vorgangs zu einem späteren zeitpunkt nach dem parsen
+
+die wohlgeformtheit eines xml doks wird von der interpretierenden anwendung überwacht. Ein parser kane in dok einlesen und überpräfen. Er wird häufig von eirer übergeordneten anwendung verwendet um informationen aus einem xml dok zu extrahieren oder in anderer weise zu verarbeiten. 
+Danebe n kann ein parser auch die gültigkeit prüfen, indem er dessen aufbeu gegen eine vorgegebene grammatik überpröft. Die definition einer solchen grammatik erfolgt mit hilfe von dtd oder xml schema.
+Push und pull parsing
+Push parsing:
+Wie sie sehen konnten, ist das parsen mit sax auf sehr einfachen prinzipien aufgebaut:sie müssen nur eine content handler klasse schreiben und dann auf die inhalte des doks warten. Der parser wird sie ihnen schritt für schritt liefern.
+Da der parser uns aufruft statt wir ihn nennt man das verfahren übrigens auch push parsing, unser code wird quasi angestoßen. Das grundprinziü der handler oder callback klassen findet man außerdem auch in anderen bereichen der softwareentwicklung wieder. Man nennt diese vorgehensweise inversion of control, was bedeutet, dass der entwickler sich nicht um den kontrollfluss oder die steuerung der anwendung kümmern muss, sondern dies dem framework oder der bibliothek überlässt und seine logik davon aufrufen lässt. Dies mag am anfang etwas ungewohnt sein, bringt aber auch ein paar vorteile mit sich. So müssen wir bsp auch nicht ermitteln, welcher knotentyp im dok gefunden wurde, da dieser über die cerschiedenen vallback methoden schon festgelegt ist.
+Nachteile: wenn push parsing und inversion of control auch viele vorteile mit sich bringen mag (primär die komplevität bestimmter ablööufe vom entwickler fernzuhalten) hat es gerade bei xml einen großen nachteil; die kods sind logisch gesehen baumartig angeordnet, physikaliscvh gesehen sind dsie aber natürlich sequentiell aufgebaut, also ein tag nach dem anderen. Die baumstruktur wird dabei durch die söffnenden und schließenden tags simuliert, die den vallback handlern entstrechend gemeldet werdem. 
+Ein resultat davon ist logischerweise, dass auch ihre vallback klassen sequentiell aufgerufen werde. Bei jedem dieser aufrufe sehen sie aber immer nur die aktuellen knoteninfo, nicht jedoch den baumkontext, also die info darüber, wo sie sich gerade im baum bedinden. Da jedes event eine eigenen abgeschlossenen methodenaufruf erzeugt können sie auch nicht mit lokalen variablen arbeiten, wie bei normaler iterativer programmierung. So ist bsp der aufruf für das melden eines start tags völlig entkoppelt vom melden des zugehörigen end tas zwischendrin können beliebig viele andere elemente wieder geschlossen werden.
+Sie müssen also im normalfall eigene instanzvariablen für die zustandsverwaltung in der handler klasse unterbringen, eventuell sogar eine stack implementierung, um aktuelle elementhierarchie zwischenspeichern. 
+
+Pull Parsing
+Inversion of control prinzip wird augegeben und ihre anwendung nicht mehr xml parser angestoßen. Stattdessen zieht sie aus dem xml parser die daten ab. Prinzipiell ist diese vorgehensweise noch viel mehr als bei sax mit dem lesen aus dem input stream oder reader vergleichbar: dort gibt es mehrere read methoden, die ihnen beim aufruf die nächsten informationshappen liefern, einzelne bytes, chars oder auch blöcke davon. 
+Allerdings brächte es ihnen natürlich herzlich wenig, ein xml dok byte oder char weise abzufragen. Sie sind natürlich nur an typischen xml bausteinen wie elementen attributen und text interessiert. Aufgrund dieser typunterscheidung der bausteine kann ein xml dok natürlich nicht wie ein herkömmlicher stream ausgelesen werden sondern sie benötigen 2 dinge: einerseits einen prüfmechanismus mit dem sie den aktuell gelieferten bausteintyp abfragen können und andererseits geeignete methoden um die typspezifischen daten abzurufen. 
+Allerdings sehen sie hier auch den nachteil gegenüber sax. Dort ist allein schon durch die aufgerufene vallback methode klar, welcher bausteintyp gefunden wurde. Und die zusatzinfo müssen wir uns dort nicht selbst vom parser besorgen, sondern bekommen sie als argumente überreicht. 
+
+Push serializing
+Wie bereits angekündigt ist stag im gegensatz zu sax aber nicht nur in der lage doks zu parsen, sondern kann sie auvh serializieren. Dabei wird natürlich ebenfalls wieder das streaming konzept verfolgt.
+In java gibt es ja nicht nur inpustream und reader, sondern auch outputstreams und writer. Bei diesen holt sich der entwickler natürlich keine infohappen ab, sondern füttert stattdessen den stream mit info. 
+Stax nutzt dieses prinzip für die serialisierung von dok. Der entwickler teilt dabei dem serializer schritt für schritt die inhalte der xml datei mit, und zwar im stil , wie er sie beim parsen ausließt. Das hei´t; statt bytes oder chars muss er dem streaam start-tags. End-tags text kommentare, attribute usw. hinzufügen. Um die korrekte umwandlung in xml text kümmert sich dabei die implementierung. Sie müssen also nicht manuell >< zeichen und ähnliches erstellen oder die syntax für attribute nachbauen, sondern konzentrieren sich auf die inhaltsrelevanten daten, wie element oder attributsnamen. 
+
+Stax ist in vielen situationen eine hervorragende alternative zur arbeit mit sax. Die performance ist vergleichbar, nurdas handling ist anders. Sie sollten sichaber immer bewusst sein, dass sie beim verzicht auf sax gegenüeber stax  auch immer auf inversion of vontrol verzichten uns sich deshal b plötzlich selbst um den kontrollfluss in ihrem programm kümmern müssen. Das heißtm sie müssen zusätzlliche prüfungen und fallunterscheidungen einbauen, um sicherzustellen und zu testen, welche xml inhalte als nächstes im xml stream kommen. Diese nachteile werden aber in dem meisten füllen durch die vorteile von pull parsing mehr als aufgewogen. 
+In jedem fall ist atax bei der serialisirung von doks eine sehr gute wahl(solange sie nicht mit einem objektmodell arbeiten). Zum einen bietet sax hierfür keinerlei mechanismus an, zum anderen ist der umgang mit stax serializern einfach und intuitiv, und man kann sehr schnell brauchbare xml doks erzeugen.
+
+
+Streambasiert und modllbasiert
+Streambsierte verarbeitung. Möglichkeiten wie dokumente zu parsen und zu serialisieren sind. 
+Die streambasierte verarbeitung beschäftigt soch primär mit dem parsen von dok. Sie hat eine fast schon banale kernidee: das xml dok wird beim parsen sequentiell von vorn nach hinten durchlaufendie auf diesem weg gefundenen zeichen werden gemä´dem xml syntaxregeln interpretiert und dann an die darüberliegende anwendung gemeldet.
+Da die verarbeitung sequentiell stattfindet, also wie bei einem datenstrom, sehen wir aber auch immer nur einen teil aus dem dokuument, nämlich den zuletzt vom parser gefunden. Wir können dann nicht mehr zurück und uns einen baustein von weiter vorn im dok ansehen. Genauso wenig können wir in die zukunft schauen, also i+ber den aktuellen baustein hinaus. 
+Vorteil: sie ist mit wenig ovverhead verbunden und damit sehr performant und effizient
+Zwei apis
+SAX  der sich ausschließlich mit dem parsen beschäftigt und dem wesentlich neueren StAX das zusätzlich Serialiserirung abdeckt. 
+
+Modellbasierte verarbeitung:
+Es dreht sich um modelle, genauer gesagt objektmodelle. Allgemein gesprochen ist ein pbjektmodell ein geflecht aus mehreren objekten bestimmter klassen. Sein hauptziel ist die abbildung komplexer daten in der software welt. Deshalb sind die dazugehörenden klassen klassischerweise datenzentrisch- das hei´t sie enthalten hauptsächlich daten (instanzvariablen= und wenige logik methoden). Typisch ist außerdem, dasss in modellklassen verweise auf andere objekte des modells untergebracht sind. 
+Auch xml doks lassen sich in form von objektmodellen darstellen. Da sie logisch gesehen baumstrukturen sind, lassen sie sicfh optimal als hierarchiscee objektmodelle abbilden. Das hei´t es gibt immer ein wurzelobjekt, das auf beliebig viele weitere unterobjekte verwzeigen kann und das rekursiv bis auf eine beliebig tiefe ebene. Wenn man nun noch attribute und die anderen sml typen als unterknoten eines elements ansieht, kann bereits ein ganzes xml dok als ppbjektbaum dargestellt werden. 
+Dom und binding
+Vorteil:
+Tanzes dok steht auf einmal im speicher zur verfügung  erlaubt wahlfreies navigieren über dokinhalte in allen richtungen und zu jeder zeit
+Im speicher befindliche objektbaum kann nach belieben modifiziert werden nbsp knoten einfügen u entfernen umhöngen oder einfach elementnamen oder textinhalte zu verändern. Wir könen sogar ohne physikalisch existentes dok ein objektmodell im speicher aufbauen, dies serialisieren und haben somit programmtechnisch ein neues dok erschaffen.
+Der objektmodellbaum zeigt uns nur die logische sichtweise, also elemente und kindelemente, während say und stax noch mit start und endtags arbeiten und wir uns selbst um die interpretation der baumstruktur kümmern müssen.
+Nachteile:
+Performance und speicherverbrauchspeziell beim parsen. Da immer das ganze dok komplett iin den speicher gelesen wird, benötigt ihr porgramm wesentlich mehr speicher. Zusätzlich entsteht natürlich overhead beim cpu verprauch für die instantiirung der modellobjekte. 
+Hinzu kommt, dass wir erst nach dem parse vorgang mit unserer logik auf das dok zugreifen können.—ein weiterer performance nachteilzuletzt haben wir praktisch keine möglichkeit unwichtige teile des doks aus dem vorgang auszuschließen, während wir beispielsweise bei sax einfach keinen vode in der handler klasse hinterlebt haben
+Was ist beser?
+Kaum möglich, eine generelle empfehlung auszusprechen, welche technologie sie einsetzen sollten. Dies hängt immer vom konkreten anwendungsfall ab. Sind die dok beispoelsweise sehr gro´, inhaltlichaber wenig komplex, empfiehlt sich die streambasierte verarbeitung. Die modellbasierte methode sollten sie wählen, wenn ses sich um sehr komplexe dok handelt, in denen viel hin und her navigiert werden muss.
+Varianten der modellbasierten verarbeitung
+Dom, das ein generisches objektmodell nutzt das für alle xml doks geeignet ist, und binding, das mit spezialisierten objektmodellen für den jeweiligen anwendungsfall arbeitet.
+
+Features einer modellbasierten xml dibliothek
+Um modellbasiert mit doks zu arbeiten brauchen sie folgende dinge,
+Modellklassen , dies alle infos aus dem dok aufnehmen können.
+Für das parsen eine parser implementierung, die zu einem gegebenen dok passende instanzen der modellklassen und damit den ojektmodell baum erzeugt und zurückgibt
+Für das serialisieren eine serializer implementierung, der sie einen objektbaum übergeben könen und die daraus das passende dok erzeugt
+Für die validierung eine implementierung der sie eine objektmodellbaum und eine grammatik übereben können und die dann prüft, ob das modell zur  grammatik passt. 
+
+
+Einsatz von xml parser
+
+ 
+
+
+DOM
+
+Document object model, wurde vom w3c beschlossen. 
+Generisches objektmodell
+Hauptmerkmal von dom, dass ein generisches objektmodell zur darstellung aller möglicen doks erstelt wird. Dies wird daduche erreicht, dass für feden möglicen knoten oder bausteintyp der in einemdok auftreten kann, ein eigenes interface definiert ist. Insgesamt gibt es elf solcher interfaces. Die interfaces sind so aufebaut, dass alle relevaten infos darüber abgefragt werden könne, so sind beispielsweise im element interface getter und setter methoden für namen und namensraum untergebracht sowie methoden , um auf die attribute und kindelemente zuzugreifen, welche zu löschen oder hhinzuzufügen. Umgekehrt kann man auch auf den elternknoten zugreifen. So können sie beliebig im dok navigieren oder es modifizieren.
+Mit dom können wir gezielt im dok nach bestimmten inhaltn suchen,. Wie beim pull parsing gehen wir dabei aktiv vor, bestimmen also selbst, wann wir woauf welche infos zugreifen möchten. Allerdings können wir zu jeder zeit in jede richtung navigieren. Level und module
+Fazit#wie sie sehen, gibt es nicht sehr viel über die grundlagen von dom zu berichten. Im gegensatz zu den streambasierten technologien halten sie hier nach dem parsen eine komplette objektrepräsentation des doks in der hand, durch die sie sich wahlfrei bewegen und an beliebiger stelle ifos abgreifen können. Das modell ist generisch und eignet sich damit für alle doks. Das macht dom zwar sehr frexibel aber nicht immer komforatabel
+
+
+SAX
+Simple Api for xml ist ein de facto standard.  Als klassischer vertreter der streambasierten verarbeitung durchläuft sax die xml doks von vorn nach hinten und iterpretiert dabei die xml syntax. Für jeden so gefundenen xml baustein erzeugt es dann ein Ereignis auf sax event genannt.  Wenn dieses dok durch sax verarbeitet wird, treen beim einlesen an bestimmten definierten punkten sax events auf- bsp wenn damit begonnen wird, das dok einzulesen, oder wenn ein öffnendes oder schließendes element vorkommt. Wie sie sehen hat jedes sax event einen tyü. Auch kann ein sax event zusätzliche info tragen, wie den elementnamen bei einem start oder end tag oder den inhalt eines textknotens. Vontent handler. Enthält für fast jeden sax event typ eine eigene methode in diesen methoden legen wir fest, was beim auftreten des zugehörigen ereignisses passieren solll, wie also die anwendung darauf reagieren soll. Beim anstoßen eines parse vorgangs übergeben wir dem parser unserer klasse, derdann für die verscheidenen ereignisse deren methoden aufzuft. Dabei übermittelt er alle zusätzlichen infos als methodenparameter. 
+Push parsing
+
+StAX
+Streaming api for xml 
+Pull parsing
+XML Binding, weglassen oder nicht?
+DOM
+Dom ist ein generisches objektmodell, mit dem alle inhalte eines doks auf objekte abgebildet werden können. Zu diesem zwicl existiert für jeden logischen baustein typ eines doks ein eigenes interface, das zugriffsmethoden für alle relevanten infos des bausteins bereitstellt. Somit können sie ganze doks in den speicher ihres programms einlesen und di e inhalte bequem auswerten. Ebenso können sie neue doks erstellen, bestehen beliebig abändern und das endergebnis schließlich wieder in eine datei schreiben.
+Vier typische aufgaben:
+Parsen von doks in eine dom objektstruktur
+Navigieren über die struktur und abgreifen von infos
+Modifizieren von doks im speicher und gegebenenfalls vorheriges neuerstellen
+Serialisieren von dom objektstrukturen in eine datei
+
+SAX
+Vorteil von dom; dass es eine vollständige abbildung des doks als baumstruktur im speicher erzeugt. Genau das wird bei gröéren doks aber schnell zu einem großen achteil. Stellen sie sich beispielsweise vor, sie möchte ein dok einfach nur daraufhin überprüfen ob es ein element mit dem namen besitzt. Mit dom müssen sie das dok zuerst vollständig in den speicher laden, um anschließend die gewünschte anfrage programmatisch durchführen zu können. Eine äußerst ressourcenintensive vorgehensweise im verhältnis zum erwarteten nutzen. 
+Im gegensatz zu diesem modellbasierten Ansatz verfolgt sax nun den streambasierten ansatz. Das physikalische dok wird sequentiell durchlaufen und meldet alle dabei gefundenen xml bausteine an eine von uns bereitgestellte handlelr oder callback klassen. Das finden eines solchen bausteins nennen wir auch sax event. Wie schon dom ist auch sax nur eine api, besteht also hauptsächlich aus interfaceund benötigt deshalb eine implementierung im klassenpfad. 
+Vier typische schritte beim parsen eines doks mit sax
+Parser instanz erzeugen
+Handler klassen erzeugen und registrieren
+Objekt für das eingabedok erzeugen
+Den parse vorgang starten
+
+Validierung als vorgang beim parsen
+
+StAX
+Alternative zur sax api, die bewusst auf deren inversion of control vorgehensweise verzichtet und dem entwickler die volle konntrolle über den parser überlässt, vergleichbar mit der arbeit mit eingabestreams.
+Alternativ dazu wird auch für die serialisierung ein eeinem ausgabestream ähnlicher mechanismus zur verfügung gestellt. 
+Zwi konzeptionell verschiedene mööglichkeiten dokumente zu oarsen oder zu serialisieren. Dementsprechend besteht die api auch aus einigen gemeinsamen klassen und interfaces und zusätzlich ein paar spezigischen interfaces für die jeweilige api varianten. Sie werden jedoch sehen, dass das grundlegende konzept dassebe ist, nur die programmierschnittstellen unterschiedlich sind, alsodie art der darstellung der daten für den programmierer und deren zugriffsweise
+Stax unterscheidet zwischen der Curser api und der event iterator api
+Die vursor api ist, ähnlich wie sax, auf einem niedrigen level angesiedelt, was heißßt, sie liegt näher am dok als die event iterator api. Dadurch ist sie ein klein wenig performanter aber auch etwas unkonfortabler.
+Beim parsen wird das dok dabei aufgeteilt in die elementaren bausteine, die sie auch schon von sax kennen. Der parser bewegtdann nacheinander einen vurser darüberm der als sichtfenster auf einen teil des doks dient. Über diesen teil kann nun der entwickler mit zugriffsmethoden des parsers informationen abfragen. 
+Die event iterartor api
+Die zweite api variante ist vom programmierkomfort her auf höherer ebene angesiedelt, aber durch zusätzlichen overhead auch geringfügig langsamer. Ihr ansatz geht mehr in richtung dom, was heißt, dass die inhaltlichen bausteine des xml doks nicht mehr über abfragemethoden mit wechsender bedeutung vom parser abgeholt werden mü+ssen, sondern sie bekommen diese in form von objekten gelievert. F+r jedes ereignis im sinne von sax events, das der parser beim eilesen des doks entdeckt, wird ein objekt erzeugt und zurückgeliefert. 
+Der zugriff erfolgt nach dem iterator prinzip, das zugriffe auf die elemente von vollection klassen in eine sewerate kklasse auslaert. Dieser liefert die elemente immer schriff für schritt für schritt, es können keine übersrungen oder gezielt angesprochen werden. Die elemente über die iteriert wird, sind bei stax die einzelnen sml bausteine des doks. 
+
+Die api variannten unterscheiden sich prinzipiell nur in einem punkt, dass bei der cursor api für stax events keine objekte erzeugt werden, sondern eine gemeinsame zugriffsschnittstelle dafür existiert, während bei der ecent iterator api zu jedem ereignis für passendes objekt erzeugt und dem entwickler überreicht wird. Die sonstige handhabung ist nahezu identisch;:; die beiden varianten verfügt der parser üner methoden um sich im stram weiterzubewegen, bzw ihn auf das ende zu überprüfen. 
+Damit empfiehlt sich die event iterator api vor allem im situationen wo info über das dok über mehrere objekte weitergereicht werden müssen und nicht direkt in der parsendenmethode verarbeitet oder in der serialiserenden methoder erzeut werde. Auch sind die namen und typen dr verfügbaren info pro bausteintyp durch das jeweilige interface genau vorgegeben, während bei der vurser api eine hüle und fülle von auskuntfsmethoden direkt auf der parser klasse zur verfügung stehen, von denen nicht alle bei jedem baustein sinnvolle ergebnissse liefert. . die wahl blaibt den anforderung der anwendung und ihnen überlsassen 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+B
+DOM
+Ways to access a n dok from your programm.
+W3x dom is a language- and platform – neutral definition, that is, interfaces are defiend for the different objects comprising the dom, but no specifics of implementation are provided. The objects in the dom allow the developer to tead, search, modify, add to and delete data from a dok- they provide a definition of standard functionality for dok navigation and manipulation of the vontent and structure of html and doks. 
+Xml has a ability to show relationships between elements. 
+We can think of eych item in the tree as a node- that is an atomic piese of info that we can manipulate. When working with the dom, there are various types of nodes- element, attribute, text nodes and so on. 
+When the dom is used to manipulate an xml text file, the first thing it does is parse the file, breaking the file out into individual elements, attributes, comments and so on. The dom relies on the description of doks provided in the w3c xmlinfo set recommendation to determine what portions of an dok correspond to nodes. It then creates a representation of the xml file as a node tree. The developer may then access the contents of the dok through the node tree,and make modifications to it as necessary. 
+In fact the dom goes one step further and threats every item in the dok as a node – elements. Attributes, comments, pis, and even the text that makes up an attribute.
+Why use the dom?
+The dom ensures proper grammar and well-formedness
+Because dom parsers transform the text file into an abstract representation of a node tree, problems like unclosed tags and improperly nested tags can be completely avoided. In in addition the dom will prevent imploper parent-child relationships in the dok. 
+The dom abstracts content away from grammar
+The mode tree created by the dom is a logical and consistent representation of the content found in the xml file  - it shows what info is present and how it is related without necessarily being bound to the xml grammar. The info exposed by the node tree may be used, for example to update a relational database, or create an html page  - and developers need not vonvern themselves whith the specifics of the xml language. 
+The dom simplifies internal document manipulation
+A developer using the dom to modity an xml file will habe a much simpler task than one who is attemptig to do so manually. As we discussed in the previous example, adding an element to the middle of a dok is a simple task with the dom. In addition, global operations van be performed with a couple of commands, rather than the brute force method required to perform a san of the file and remove the offending tasks. 
+The dom closely mirrors typical hierarchical and relational database structures
+The way in which the dom represents the relationship betwwn data elements is very similar to the way that this info is represented in modern object- oriented and relational databases. This makes it very easy to movbr info between a database and an xml file using the dom. 
+Because the dom loads an entire dok into memory and parses it into adok tree, it tends to vonsume an inordinate amount of memory – depending on several factors such as the library being used and the detail of its internal structure, a dok can require up to four or five times its own size for a dom representation! If you hava a server that neneds to work with several muti megabyte doks at once, you can see how the dom could rapidly become a bottleneck. The alternative would be to use some other processing mechanism to get at the info in your dok.
+SAX
+Was designed specifically to avoid the memory problems encountered when using the dom. Instead of loading the entire dok into memory all at once, it streams the dok through a parser and raises events based on  the elements, attributes and so on, that it encounters. If you need to extract a few pieces of info from a large dok, sax is usually the best way to accomplish it. However, if you need to extract the entire contents of an dok, or your dok has complex relationships, sax will be a poorer choice – requiring multiple parsers over the dok or caching of the dok info.
+XSLT 
+Preprocess the dok. If you need to access some well-defined subset of larger dok, you could pre process the dok with xslt and then load the resulting instance of the dok with the dom. This will reduce the memory footprint  of your application dramatically, but also slow down processing. Also this method does not allow updating of the original dok, so it can only be used to read the dok. Note that the pre processing  with xslt only works if you re using an xxslt library that runs on top of sax  - if it runs on top of the dom, the program will still load the entire dok tree into memory.
+
+Whe ´n writing a piece of software that accesses xml files using the dom, aparticular implementation of the dom must be usd. The implementation is a library of some kind , designed to be run on a particular hardware aand software platform and to access a particular data store.
+
+The dom is not an api
+As wece seen before the dom specification only provides the interface definition for the dom libraries, not the specific sof their implementation. It then falls to third parties to provide implementation s of the dom that may be used by programmers. When planning to use the dom to manioulate xml structures in your application, you will need to pbtain platfor´m-specific implementations ot the dom for each platoform your application targets. In most cases these libraries will need to be bundled with your application an ddeployed along with your application binarys.
+
+Client side and server side
+While there are a great vatiety of applicatioos for the dom and xml, they can be loosely grouped into two types:those deployed on a sever or in a controlled environment, such as a client-sercer system, and those deployed on a client.
+Dom on the server
+Since internet developers have much more control over the software deployed to their sercers, the first applications of dom have been on the server. The dom can be used to greatly simplify daga interchange between disparate business systems, as well as providing an ideal mechanism for the archival and retrieval of date.
+One of the first applications of xml in the enterprise will be to facilitate inter-process or inter-business communications. 
+Xml files are platform independent
+Are self describing
+Show hierarchical infos.
+Dom on the client side
+Client side dom libraries are becoming widely available, internet decelopers can take advantage of the dom on the client to improve the way info is rendered and decrease round trips to server.
+Flexible client rendering
+Client datra entry 
+Use client side dom to manipualate doks to provide a greater level of interaction with the suser. Structured info may be collected from the lient and shipped back to the server in one transaction, rather thana series of form calls spanning several html pages. 
+Using dom in the publishing process
+The dom and databases
+Xml provides one possible mechanism for transferringinfo between different databases. By their nature, database are proprietary – each database has a different naming structure for elements, a different normalization level, and even different methods of describing enumerated info. Using the dom, we can simplify the way info is passed between various databases. 
+Dom to create complex doks
+One of the nice things about manipulating xml doks with the dom is that the dom is random- access that is, a node may be created or attached anywhere within the xml tree at any time. This proves to be quite useful when building doks from info in a hierarchical or relational darabase.
+
+The dom provides a programmatic means of processing xml doks
+The dom allows us to manipulate xml data structures on both the client and the sercer
+The dom provides an idealmechanism for transferring info between databases using the dom
+The dom may be implemented differently on different platforms.
+
+SAX
+In an industry-standard api intended for high performance xml dok processing.  Is not a w3c recommendation. It is important to realize that SAX is an API, providing interfaces for parsers to implement. Therefore, sax by itself cannot be used to parse documents, to do that we need sax parsers, which are parsers conforming to the sax specification-,, in other words, they implement the interface defined by sax.
+Sax parsing proves to be up to twice as fast as dom parsing. (performance)
+Sax parsers process the xml dok sequentiylly while dom parsers load the entire doc into memory and store it in a tree structure. A sax parser reads through the input xml doks and notifies us of any interesting events. After processing input data, the sax parser throes it away, and therefore only stores in memory the data currently being processed. 
+Unfortunately, there is a catch. This fast, memory friendly, sequential processing has its shortcomings; 
+-	No random access. The sequential model that sax provides does not allow for random access to a ndok. The element being parsed has no knowledge of past or future elements. Therefore, searching through an xml dok is a hard task with sax. No lateral movement. The access  provided with sax is not only sequential, but also very hierarchical. This makes tasks like moving laterally between elements difficult. Each element is parsed down to its leaf nodes before movig on tothe next sibling of that element. Therefore at no point is there any clear relation of what level of the tree we are at. Because of this, the dom approach is used for input into any processor needing random access to the xml instance (such as xslt processors)
+-	Sax development is also more complex than dom, because you have to write a sax handler to interpret the sax events.
+-	However the sax handlers have been made easy to write, and if you master saxm you will find that it is much more flexible for custom solutions than dom. In many vases, if you need random access to a dokm you can still use sax to vreate the subset of the dok you need as a tree. There are still significant performance increases to be gained from making your own less heavyweight dom. The lack of a dok reüresentation leaves you with the challenge of manipulating, serializing and tracersing the dok. 
+-	So there is the tradeoff; performance versus easy programming
+ 
+Which one to choose
+Some applications do not require the functionality provided by dom. Parsing with dom can become very memory hungry, and can dramatically decrease the performance of your application when dealing with large doks. 
+Generally for quick, less-intensive parsing and processing, sax is the better one. Also when no tree manipulation is needed, sax is better. In other cases, dom provides an easy to use, clean interface to data in a desirable format.
+When to choose sax
+Large dok handling. The strength of the sax specification is that it can scan and parse gigabytes worth of doks without hitting resource limits, because it does not try to vreate the dom representation in memory. If you habe limited resources on your server, you should definitely use sax
+Retrieving a specific value from a dok.. we can abort the sax processing during any event handling. Therefore, when we have what we want from the dok, we can simply abort the processing
+Creating a subset dok. .when dealing with a large dok, sax can be used to vreate a subset of it containing the required data, and dom can then be used to process that data.
+When to choose dom
+Modifying the dok. As sax is read-only, it cannot modify an dok. Of course, sax can create a new document with modifications, but dom provides a much easier way to handle this since it allows you to modify the dok directly. Thus, dom is more adept in modifying doks and changing their  structure.
+Random access. As i said earlier, dom is better suited for randomly accessing the dok, since it keeps the whole tree in memory.
+Understanding sax
+Sax gives you access to the info in your dok, not as a tree of nodes, but as a sequence of events. It does not create an object model on top of the dok, and therefore it van process the dok much faster. All that the sax parser does is to read through the dok and fire some events depending on the taxs encountered. 
+To enable our application to take actions on specific events, we must implement the handler interface which the parser calls, and register the handlers with the parsers. A handler is just an interface that defines methods for specific events. 
+Dtd handlers
+The dtd handler interface provides methods that handle events that occur while reading and parsingan doks dtd. It does not define events associated with the validation itself, just events associated with the parsing of the dtd. 
+Validation 
+To validate a dok , we have to turn on the validation feators of parser.
+DTD calidation and amespaces
+Validating parsres have trouble processing doks that use dtd and namespaces, simply because namespaces are not supported by dtd. Therefore we need to turn off one or the oter. 
+
+http://www-lehre.inf.uos.de/~rkunze/flashweather/Diplomarbeit/node24.html
+http://www-lehre.inf.uos.de/~rkunze/flashweather/flashweather.pdf
+Ein weiterer Unterschied liegt in der Validierung eines XML-Dokumentes. Sollten bei der Validierung mit SAX Fehler im Dokument auffallen, kann es im schlimmsten Falle sein, daß fast das gesamte Dokument verarbeitet wurde. Eventuell durchgeführte Aktionen müssen dann wieder rückgängig gemacht werden. Des weiteren kann bereits unnötig viel Rechenzeit vergangen sein, da die einzelnen Ereignisse eine komplexe Verarbeitung nach sich ziehen können. Beim DOM wird im Falle einer Validierung erst das gesamte Dokument geprüft und es ist daher zu Beginn der eigentlichen Verarbeitung sicher fehlerfrei. 
+
+Parser ist ein programm das ein xml dokument aufbricht in verwendbare objekte. 

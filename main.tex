@@ -1,0 +1,67 @@
+\documentclass[ngerman, 12 pt]{formatierungen}
+
+%\usepackage{scrpage2}					% Kopf- und Fußzeile
+%\pagestyle{scrheadings}
+%\clearscrheadfoot
+%\ihead{Exposé}
+%\chead{Exposé}
+%\ohead{}
+%\ifoot{Seite \pagemark}
+%\cfoot{Seite \pagemark}
+%\ofoot{Seite \pagemark}
+
+\title{Bachelorarbeit}							% Titel
+
+\includecomment{fullonly}				% zeigt Photo an
+
+% \input{header}						% Header wird eingefügt
+
+\begin{document}
+
+%\input{Titelseite}
+%\setcounter{page}{1} %Nummerierung beginnen bei 1
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Einleitung}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{XML}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Angriffe}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{XML-ParserBeispiele}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{GenerelleRisikoeinschaetzung}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{GefahrenfuerSoftwaresysteme}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Fazit}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Zusammenfassung}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Abkuerzungsverzeichnis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Literaturverzeichnis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Abbildungsverzeichnis}
+
+
+\end{document}

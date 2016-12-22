@@ -1,0 +1,51 @@
+Welche art von parser
+\section{Angriffe}
+XML wird in vielen Anwendungen verwendet. Das bedeutet auch, dass eine sehr große Angriffsfläche für Angreifer geboten wird. 
+Um XML verarbeiten zu können benötigen die Anwendungen wie schon gesagt XML-Parser. Diese sind aber gleichzeitig auch die große Schwachstelle von XML. Sie können teilweise mit einfachsten Mitteln attackiert werden. Die verschiedensten Arten von Angriffen können eingesetzt werden um die Verfügbarkeit, die Integrität oder die Vertraulichkeit von Anwendungen und Personen zu kompromittieren. 
+Bei einem Angriff muss nur ein „böses“ XML-Dokument in die  Anwendung hochgeladen werden. Der XML-Parser verarbeitet es und der schadhafte Inhalt der .xml Datei wird ausgeführt.
+Dabei gibt es die verschiedensten Gruppen  von Angriffen.
+ Denial of Service Angriffe zielen auf die Verfügbarkeit der Anwendungen ab. Vertreter sind  XML Bomb, Quadratic Blowup und Recursive Entities. 
+Attacken hinzufügen.
+
+\subsection{Denial of Service Angriffe}
+Bei einem Denial of Service Angriff wird eine System Resource, wie das Netzwerk, den Speicher oder den Arbeitsspeicher angegriffen.  TODO
+\subsubsection{XML-Bombe}
+Bei der XML Bombe, auch Billion laughs attack genannt wird vorrangig die Verfügbarkeit von Anwendungen angegriffen.  
+Von einem Verlust der Verfügbarkeit spricht man, wenn ein System und die darin verarbeiteten Daten nicht mehr korrekt dargestellt werden können. Sie stehen nicht mehr ordnungsgemäß  zur Verfügung. \parencite[Vgl.][326]{Schutzziele_der_IT-Sicherheit}
+Bei einer XML-Bombe wird ausgenutzt, dass innerhalb des XML-Dokuments Entity-Referenzen definiert werden können. Sie werden geschachtelt definiert und bei der Verarbeitung durch den XML-Parser aufgelöst. \parencite[Vgl.][3]{ SoK:_XML_Parser_Vulnerabilities}
+\begin{lstlisting}
+<?xml version="1.0"?>
+<!DOCTYPE bomb [
+  <!ENTITY a "lol">
+  <!ENTITY a2 "&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;">
+  <!ENTITY a3 "&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;">
+  <!ENTITY a4 "&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;">
+  <!ENTITY a5 "&a4;&a4;&a4;&a4;&a4;&a4;&a4;&a4;&a4;&a4;">
+  <!ENTITY a6 "&a5;&a5;&a5;&a5;&a5;&a5;&a5;&a5;&a5;&a5;">
+  <!ENTITY a7 "&a6;&a6;&a6;&a6;&a6;&a6;&a6;&a6;&a6;&a6;">
+  <!ENTITY a8 "&a7;&a7;&a7;&a7;&a7;&a7;&a7;&a7;&a7;&a7;">
+  <!ENTITY a9 "&a8;&a8;&a8;&a8;&a8;&a8;&a8;&a8;&a8;&a8;">
+]>
+<bomb>&a9;</bomb>
+\end{lstlisting}
+Beispiel für eine XML-Bombe
+Wenn der XML-Parser die Datei verarbeitet, ersetzt er am Anfang die Entity- Referenz \texttt{&a9} durch die \texttt{&a8;&a8;&a8;&a8;&a8;&a8;&a8;&a8;&a8;&a8;}. Im nächsten Schritt wird dann für jede Entity-Referenz \texttt{&a8} \texttt{ &a7;&a7;&a7;&a7;&a7;&a7;&a7;&a7;&a7;&a7;} eingesetzt. Dies wird so lange wiederholt bis alle Entity-Referenzen aufgelöst wurden. So kann eine kleinen .xml Datei schnell während des Parsens viele Gigabyte des Speichers belegen. (Im Beispiel sind es ca. 3,5 GB) \parencite[Vgl.][3]{ SoK:_XML_Parser_Vulnerabilities} 
+Um den Angriff mithilfe einer XML-Bombe zu verhindern, kann im Parser ein Threshold definiert werden. Dieser limitiert die Anzahl der Erlaubten Entity-Referenzen in einem XML-Dokument. \parencite[Vgl.][3]{ SoK:_XML_Parser_Vulnerabilities}
+Um den Threshold zu umgehen kann  eine Quadratic Blowup Attacke ausgeführt werden.
+\subsubsection {Quadratic Blowup Attacke}
+
+Ausnutzen das interne dtd vor externer datei zählt
+Datei  hochladen die xml enthält mit bösen sachen, parser parsd das server boom
+Datei hochladen auf server
+	
+XML ist sehr weit verbreitet. Bietet XML ein Ziel für Angreifer ist die Angriffsfläche also sehr groß.  Die große Schwäche von XML sind die XML-Parser. Es gibt viele verschiedene Angriffsarten die mittels des xml parsers durchgeführt werden. Dabei können verschiedene Arten von Angriffen durchgeführt werdeen, sie addressieren auch jeweils andere Schutzziele, wie die Vertraulichkeit die Verfügbarkeit oder die Integrität von …-
+
+Eine Anwendung fir miz XML arbeitet bracuht die hilfe eines xml parsers. Unter jeder Anwendung steht also ein xml parser.  Für einen meist erfolgreichen Angriff muss ein Angreifer nur eine XML-Datei auf einen Server hochladen. Diese wird dann vom Oarser gelesen und verarbeitet. Und dem Angreifer wird trotz eines validen und wohlgeformten XML Dokuments tür und tor geöffnet. Wir werden sehen wie einfach ein angriff auszuführen ist die meisten xml parser können gar nichts machen und dienen dem angreifer als hilfsmittel. 
+Ei sehr weit verbreiteter und sehr einfacher angriff ist zum beispiel der dos angriff. Dabei wird durch die eingearbeitete xml datei die Arbeitsrechner die memory und weiß der geier was so wiet überlastet das die anwendung nicht mehr fählig ist anfragen zu verarbeiten oder eine website am laufen zu erhalte.  Es gibt verschiedene Arten von dos angriffen auf xml parser, die xml bomb , die guadrubel irgendwas und das mit der infinite loop. 
+Bei der xml bomnb wird einfach benutzt das ein parser mit  external entitys arbeitet. Wie bei dtds beschrieben kann die deklaratio ja auch im dok stattfinden und muss nicht unbedingt außerhalb des dokuments liegen. Bei der xml bomb wird das ausgenutzt. Es werden einfach Entities deklariert die referenzen auf referenzem  und diese haben wirder referennzen auf referenzen habem. Bsp.
+Dadurch hat der parser ne menge zu tun, aus einer zeile können so schnell 3 gb an … werden. 
+Verhindert werden kann das menn die anzahl an entity deklarationen beschränkt wird.
+Doch dann greift die guadruple attack. 
+Bei ihr werden einfach sehr lange Attribute oder entitys ? definiert, weniger aber mehr, die werden dann aufgerufen und die arbeitsspeicher usw laufen voll. Bsp
+Als letzte hier vorzustellende art will ich infinit loop vorstellen. Ich weg
+Es werden 2 entities definiert die sich wechselseitig aufrufen. Somit kommt es zu einem infinit loop. Ist aber bei den jüngeren parsern schon nicht mehr möglich die prüfen darauf hin.

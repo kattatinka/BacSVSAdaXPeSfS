@@ -1,0 +1,30 @@
+Ein XML-Dokument muss wohlgeformt sein, damit es allgemeingültig von einer Anwendung verarbeitet werden kann. Dafür muss es bestimmten Regeln entsprechen, die in den XML-Spezifikationen beschrieben sind. Die XML-Spezifikationen bestimmen den Aufbau des Dokuments. Sie spezifizieren zum Beispiel, dass nur ein Wurzelelement existieren darf. Es wird festgelegt wie die strukturelle Verschachtelung von Elementen und Attributen erfolgen muss und wie der Aufbau von Elementen und Attributen sein darf. 
+
+Für die Prüfung auf Wohlgeformtheit ist der XML-Parser zuständig. Er übernimmt die Aufgabe zu versichern, dass das XML-Dokument den in der Spezifikation beschriebenen Regeln entspricht. Der XML-Parser wird häufig von einer übergeordneten Anwendung verwendet. Dabei ließt er das XML-Dokument ein und überprüft es, wenn ein XML-Baustein nicht den Spezifikationen entspricht meldet der XML-Parser dies der Anwendung und gibt ihr keine Daten und XML-Strukturen mehr weiter. 
+
+Wichtig ist, dass bei der Prüfung auf Wohlgeformtheit durch den XML Parser nur die Struktur des XML-Dokuments überprüft wird. Soll neben der Struktur auch die Syntax überprüft werden wird ein validierender Parser benötigt, der das XML-Dokument weiter einschränkt. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+version1
+Jedes XML-Dokument muss alle Regeln erfüllen, die in den XML-Spezifikationen beschrieben sind. So kann eine Anwendung das wohlgeformte XML-Dokument allgemeingültig verarbeiten. XML-Parser überwachen dabei die Wohlgeformtheit der XML-Dokumente. Sie lesen XML-Dokumente ein und überprüfen sie. Bei der Überprüfung werden keine external declarations verarbeitet, auch Attributwerte bekommmen keine Defaultwerte zugewiesen und werden nicht weiterverarbeitet. Der XML-Parser wird häufig von einer übergeordneten Anwendung verwendet. Findet er einen Teil des Dokuments der nicht den Spezifikationen entspricht, meldet er dies der Anwendung. Der XML-Parser überprüft das XML-Dokument weiter auf vorhandene Fehler, gibt aber der Anwendung keine Daten oder XML-Strukturen mehr weiter. Ein XML-Dokument kann weiter eingeschränkt werden, indem es validiert wird.
+
+%java und xml d
+
+%Wohlgeformtheit muss ausnahmslos für alle xml doks gelten. Hiermit sind bestimmte
+%Regeln gemeint, die befolgt werden müssen, damit ein xml dok von einer Anwendung
+%allgemeingültig verarbeitet werden kann.
+%welches die in den XML-Spezifikationen beschriebenen Regeln erfüllt, bezeichnet man als wohlgeformt
+%(well-formed).
+
+%Wohlgeformtheit ist die Voraussetzung, dass eine XML-Datei verarbeitet werden kann.
+%Die wohlgeformtheit eines xml doks wird von der interpretierenden Anwendung überwacht : xml parser .
+%Ein xml parser kann ein xml dok einlesen und überprüfen. Er wird häufig von einer übergeordneten
+%Anwendung verwendet, um Informationen aus einem xml dok zu extrahieren oder in einer anderen
+%Weise zu verarbeiten. Entdeckt der xml parser einen oder mehrere Verstöße gegen die Wohlgeformtheit,
+%so meldet er diese an die übergeordnete Anwendung.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%java und xml e
+
+%all xml data must conform to both syntax requirements and a simple container structure. 
+%this data can be used without a dtd or schema to describe their structure, and is also known as standalone xml data. such data cannot rely upon any external declarations, and attribute values will receive no special processing or default values. 
+
+%any xml parser that encounters a construct within the xml data that is not well formed must report this error to the application as a fatal error. Fatal errors need not cause the parser to terminate- it may continue processing in an attempt to find other errors, but it may not continue to pass character data and/or xml structures to the application in normal fashion. Hopefully, this rather brutal error handling will prevent the creation of bloated software like internet explorer and navigator.

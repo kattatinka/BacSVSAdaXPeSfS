@@ -1,0 +1,8 @@
+\subsubsection{interne allgemeine Entities}
+Interne allgemeine Entities sind immer geparste Entities, sie referenzieren also XML wohlgeformte Inhalte.  Geparste Entities dürfen sich nicht selbst rekursiv aufrufen, weder direkt noch indirekt. Sie können innerhalb des XML-Dokuments verwendet werden und werden innerhalb der DTD-Deklaration gebildet. 
+<?xml version=“1.0“>
+<!DOCTYPE dokument [
+<!ENTITY  name „Ersetzungstext“>
+]>
+Die Referenz wird mit \texttt{&name;} aufgerufen. Sie kann überall dort verwendet werden,  wo in einem XML-Dokument Text stehen darf.  Entities können sogar innerhalb von Entitiereferenzen definiert werden. \parencite[Vgl.][]{UTZ} 
+Wenn der XML-Parser eine Entity-Referenz finden geht er zur entsprechenden Entity-Declaration und ersetzt jede Referenz mit dem zugehörigen Ersetzungstext.

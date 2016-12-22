@@ -1,0 +1,51 @@
+DOS
+
+\item Denial of Service Angriffe beeinflussen die Verfügbarkeit der Anwendungen. 
+ 
+\textbf{Attacken hinzufügen.}
+
+\end{itemize}
+\subsection{XML-basierte Denial of Service Angriffe}
+
+Denial-of-Service Attacken (DoS) zielen auf die Verfügbarkeit eines Services oder Systems ab. Dabei können die verarbeiteten Daten nicht mehr korrekt dargestellt werden. Sie stehen nicht mehr ordnungsgemäß  zur Verfügung. \parencite[Vgl.][326]{Schutzziele_der_IT-Sicherheit}
+Dies geschieht indem die Ressourcen verbraucht werden, die eigentlich nötig sind, um den Service bereitstellen zu können. Dazu zählen zum Beispiel Netzwerkbandbreite, Speicher oder Berechnungsressourcen. \parencite[Vgl][172]{Protecting_Web_Services_from_DoS_Attacks_by_SOAP_Message_Validation} Die Anwendung muss dabei etwas verarbeiten, dass extrem viele Ressourcen benötigt. \parencite[Vgl.][3]{SoK:_XML_Parser_Vulnerabilities}
+
+XML-based DoS Attacken sind eine Variante von DoS Attacken die speziell auf XML-Parser abziehlen.  Dabei ist der Angriffsvektor ein speziell gestaltetes XML-Dokument. \parencite[Vgl.][66]{Adidos}
+SOAP?  \parencite{Protecting_Web_Services_from_DoS_Attacks_by_SOAP_Message_Validation}
+
+Vertreter von XML-basierten Denial-of-Service Angriffen sind zum Beispiel  XML Bomb, Quadratic Blowup und Recursive Entities. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+http://nds.rub.de/media/nds/arbeiten/2015/11/04/spaeth-dtd_attacks.pdf
+Denial-of-Service Attacks 
+This section discusses the DoS attacks in connection with XML parsers. First, we will give a short overview about DoS attacks and specifically for XML parsers. Then we will explain in detail how the billion laughs attack works. Lastly, we will discuss some other variations of DoS attacks like a recursive DoS attack or a DoS attack based on parameter entities. 
+Overview of Denial-of-Service Attacks 
+OWASP [owa13] defines a DoS attack as “an attempt to make a resource unavailable to its legitimate users”. DoS attacks target the availability of a system and are usually network based, that is they aim to exhaust the available network resources. 
+OWASP [Liv10] addresses the classical DoS attacks on layer 3 and 4 in order to then make a system to authorized parties unavailable. On the network layer a DoS attack forces the XML parser to make a request to an attacker controlled server, consuming an arbitrary amount of bandwidth, for example, by using the attacks described below. We would like to note at this point that this is a combination of a URL Invocation and a DoS attack. As there are more than 3 tiers involved more issues may arise.
+ It is also possible to solely target the application layer and use DoS attacks against Databases, the web Application itself or the XML parser. DoS attacks on the application layer are easy to perform and only an insecure setting or feature within the application may be necessary to trigger an attack. 
+https://www.nds.rub.de/media/nds/veroeffentlichungen/2016/07/22/woot16-sok_xml_parser_vulnerabilities.pdf A
+4 Denial-of-Service 
+DoS attacks target system resources, such as network, storage, memory or CPU processing [29]. An efficient way to do this is to let the application process a "problem", thereby allocating a huge amount of resources. At the same time the attacker can generate and send the attack vector using much fewer resources. As a result, an offered service is unavailable for benign users or at least responds significantly slower than normal. 
+
+http://de.slideshare.net/cseij/attacks-on-web-services-need-to-secure-xml-on-web
+ 
+	
+https://books.google.de/books?id=MWihCwAAQBAJ&pg=PA66&lpg=PA66&dq=xml+parser+dos+attack&source=bl&ots=mXixvLN6Qg&sig=x5jmzJlvEt8rWEDX5amwlAAW_to&hl=de&sa=X&ved=0ahUKEwiJwvHQ9_DQAhUnIcAKHRLpCmQQ6AEIczAJ#v=onepage&q=xml%20parser%20dos%20attack&f=false E
+ 
+ 
+Wichtig muss noch bei xml rein
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.92.4061&rep=rep1&type=pdf B
+Denial of Service (DoS) attacks aim at reducing or completely eliminating a systems’s or service’s availability. One can distinguish two kinds of DoS attacks: Protocol Deviation Attacks and Resource Exhaustion [17]. Protocol Deviation Attacks exploit vulnerabilities in implementations of protocol processing entities. In some cases a single packet that diverges from the intended protocol flow can make the attacked system crash. A well-known example is Ping of Death. Resource Exhaustion attacks consume the resources necessary to provide the service (network bandwidth, memory and computation resources). The simplest attack produces an extremly high network traffic load to the system providing the service (Dump Flooding). Using such an attack makes it difficult to completely interrupt a service’s availability, even if executed as a Distributed Denial of Service (DDoS) attack. More elaborated DoS attacks do not try to occupy all available network capacity by brute force, but send messages that—though comparably small in number—are suited to quickly exhaust the server’s memory and cpu resources. A popular example is the TCP/SYN flooding, where the server is flooded with (small) TCP/SYN packets. The server must create a complete TCP connection context for each packet and finally crashes due to memory consumption. With XML and Web Services new kind of attacks arise. The most common message protocol for Web Services is SOAP, an XML based message format. Such a SOAP message is usually transported using the HTTP protocol. Figure 1 shows a simple SOAP message with the most relevant HTTP header lines. The message contains a request for the operation add with 3 parameters named x. Two of the most important DoS attacks on XML based services like Web Services are Coercive Parsing and Oversize Payload (see e.g. [18] and [13]). The first one uses a deeply nested XML document, the second one an extremly large XML document to exhaust the service’s memory. This is easier than for nonXML protocols due to the nature of XML document processing. An incoming SOAP message is parsed, validated to the Web Service interface specification and bound to programming language objects [14]. The most common and flexible model for XML processing is DOM [2]. When using DOM a DoS attack would indeed be very simple. A DOM based parser reads the complete SOAP message and builds an in-memory representation (called DOM tree), that is much larger than the message itself. The parser can therefore be attacked by an arbitrary SOAP message, e.g. a message with a large total size or with a deeply nested XML structure. Even if the the parser component of the Web Service uses an event-based processing model (e.g. SAX [15]) and the succeeding components (for validating and language binding) check the correctness of the SOAP message, there are still possibilities for attacks. A simple, yet effective attack can be performed if the Web Service message contains a list of elements (like in the sample shown in figure 1). This is defined in the Web Service interface description (see section 4.1) by an XML Schema element [7] containing an attribute maxOccurs="number-of-elements ". If this element has a cardinality > 1, the number of elements is nearly always set to "unbounded" to simplify the Web Service processing. If the description is generated by a Web Service framework from an existing implementation (which is a very common proceeding), this value is automatically set for all data arrays. Such a declaration allows documents to contain an unlimited number of elements. It is obvious that such a document can exhaust the server’s memory. In practical tests we easily produced deadlocks and crashes, sending a SOAP message with a large number of elements to a .NET and an AXIS Web Service.
+Though not a DoS attack, a further important attack on Web Services covered by our solution is WSDL Scanning. All operations for a service are described and advertised inside a Web Service description using the Web Service Description Language (see section 4.1). If only some of a service’s operations are intended to be called from the internet, an attacker is able to call all the service’s operations anyway. Packet Filters and HTTP ALG are unable to differentiate operations belonging to the same service, because they all have the same service endpoint (IP address, TCP port and HTTP URL). The operation is only defined inside the SOAP message1 (e.g. the operation add in the SOAP message in figure 1)
+
+http://www.itwissen.info/definition/lexikon/denial-of-service-DoS-DoS-Attacke.html C
+Denial of Service (DoS) sind Dienstverweigerungen, die im Internetzur Beeinträchtigung von Webservices führen, und die, als DoS-Attacke ausgeführt, einen angegriffenen Server oder eine Websiteaußer Betrieb setzen können.
+DoS-Angriffe werden durch Überlastung von Servern ausgelöst, so beispielsweise durch die Bombardierung eines Mail-Servers mit einer Flut an Mails, durch millionenfache Anfragen an einen Server oder durch Überflutung eines Netzwerks mit Datenpaketen. In allen Fällen können die Funktionen wegen Überlastung der Server oder Netze nicht mehr hinreichend ausgeführt werden. Die Server sind nicht mehr erreichbar, die Netze können zusammenbrechen.
+ 
+DOS-ATTACKEN  
+DoS-Attacken zielen in der Regel nicht auf den Zugang zum Netzwerk, System oder zu den Datenbeständen, sondern haben das Ziel einen Dienst einzuschränken, zu blockieren oder unbenutzbar zu machen. Dazu werden die zur Verfügung stehenden Programme oder Netzwerk-Ressourcen außerordentlich überbelastet, manchmal auch kollektiv von tausenden Nutzern.
+ 
+DOS-VARIANTEN  
+Ein DoS-Angriff kann durch IP-Spoofing vorbereitet werden. Der Angreifer nutzt dazu eine autorisierteIP-Adresse und gelangt so in das System oder das Netzwerk, um dann seine DoS-Attacke auszuführen. Neben dem Mailbombing und dem Broadcaststurm, gibt es als weitere DoS-Attacken das SYN-Flooding, Ping-Flooding, Ping of Death (PoD), die Smurf-Attacke, Nuke-Attacke,Teardrop-Attacke, Distributed Denial of Service (DDoS), Distributed Reflective Denial of Service (DRDoS) und das Advanced Persistent Denial of Service (APDoS).
+
